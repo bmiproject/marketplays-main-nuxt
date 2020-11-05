@@ -1,7 +1,7 @@
 <template>
     <v-responsive>
         <department-listing />
-
+        <featured-service-by-department />
     </v-responsive>
 </template>
 <script>
