@@ -34,14 +34,16 @@
                                 <p v-html="item.content"></p>
                             </v-card-text>
                             <v-card-actions>
-                                <v-btn
-                                    text
-                                    color="primary"
-                                    style="font-size: 16px; letter-spacing: 0"
-                                    :to="item.link"
-                                >
-                                    {{ item.btnLabel }} <v-icon right small>mdi-open-in-new</v-icon>
-                                </v-btn>
+                                <NuxtLink :to="item.link || '#'">
+                                    <v-btn
+                                        text
+                                        color="primary"
+                                        style="font-size: 16px; letter-spacing: 0"
+                                        :to="item.link"
+                                    >
+                                        {{ item.btnLabel }} <v-icon right small>mdi-open-in-new</v-icon>
+                                    </v-btn>
+                                </NuxtLink>
                             </v-card-actions>
                         </v-card>
                     </v-col>

@@ -2,7 +2,7 @@
     <section id="testimonials-section">
         <v-row no-gutters>
             <v-img
-                src="../../../assets/ecommerce/testimonial-back.jpg"
+                :src="require('~/assets/images/ecommerce/testimonial-back.jpg')"
                 class="py-15 pb-xl-0"
             >
                 <v-responsive 
@@ -67,9 +67,9 @@ export default {
     },
     data: () => ({
         items: [
-            { avatar: require('../../../assets/ecommerce/avatar.png'), name: 'Josh Adams', position: 'Director', content: "Adipiscing parturient vitae egestas eu fringilla ultricies at. Lacus, elit phasellus placerat aenean ultrices consequat <br> neque gravida. Nunc pellentesque orci, pharetra ipsum. Donec convallis egestas id malesuada est ultrices volutpat. <br> Non sit id adipiscing ullamcorper eu maecenas eget nunc, magna. Aliquet sem ut elementum orci, vitae erat et <br> sapien nec. Est nunc velit ut ac ac aliquam aliquam dignissim tortor." },
-            { avatar: require('../../../assets/ecommerce/avatar.png'), name: 'Josh Adams', position: 'Director', content: "Adipiscing parturient vitae egestas eu fringilla ultricies at. Lacus, elit phasellus placerat aenean ultrices consequat <br> neque gravida. Nunc pellentesque orci, pharetra ipsum. Donec convallis egestas id malesuada est ultrices volutpat. <br> Non sit id adipiscing ullamcorper eu maecenas eget nunc, magna. Aliquet sem ut elementum orci, vitae erat et <br> sapien nec. Est nunc velit ut ac ac aliquam aliquam dignissim tortor." },
-            { avatar: require('../../../assets/ecommerce/avatar.png'), name: 'Josh Adams', position: 'Director', content: "Adipiscing parturient vitae egestas eu fringilla ultricies at. Lacus, elit phasellus placerat aenean ultrices consequat <br> neque gravida. Nunc pellentesque orci, pharetra ipsum. Donec convallis egestas id malesuada est ultrices volutpat. <br> Non sit id adipiscing ullamcorper eu maecenas eget nunc, magna. Aliquet sem ut elementum orci, vitae erat et <br> sapien nec. Est nunc velit ut ac ac aliquam aliquam dignissim tortor." },
+            { avatar: require('~/assets/images/ecommerce/avatar.png'), name: 'Josh Adams', position: 'Director', content: "Adipiscing parturient vitae egestas eu fringilla ultricies at. Lacus, elit phasellus placerat aenean ultrices consequat <br> neque gravida. Nunc pellentesque orci, pharetra ipsum. Donec convallis egestas id malesuada est ultrices volutpat. <br> Non sit id adipiscing ullamcorper eu maecenas eget nunc, magna. Aliquet sem ut elementum orci, vitae erat et <br> sapien nec. Est nunc velit ut ac ac aliquam aliquam dignissim tortor." },
+            { avatar: require('~/assets/images/ecommerce/avatar.png'), name: 'Josh Adams', position: 'Director', content: "Adipiscing parturient vitae egestas eu fringilla ultricies at. Lacus, elit phasellus placerat aenean ultrices consequat <br> neque gravida. Nunc pellentesque orci, pharetra ipsum. Donec convallis egestas id malesuada est ultrices volutpat. <br> Non sit id adipiscing ullamcorper eu maecenas eget nunc, magna. Aliquet sem ut elementum orci, vitae erat et <br> sapien nec. Est nunc velit ut ac ac aliquam aliquam dignissim tortor." },
+            { avatar: require('~/assets/images/ecommerce/avatar.png'), name: 'Josh Adams', position: 'Director', content: "Adipiscing parturient vitae egestas eu fringilla ultricies at. Lacus, elit phasellus placerat aenean ultrices consequat <br> neque gravida. Nunc pellentesque orci, pharetra ipsum. Donec convallis egestas id malesuada est ultrices volutpat. <br> Non sit id adipiscing ullamcorper eu maecenas eget nunc, magna. Aliquet sem ut elementum orci, vitae erat et <br> sapien nec. Est nunc velit ut ac ac aliquam aliquam dignissim tortor." },
         ]
     }),
     methods: {

@@ -1,5 +1,5 @@
 <template>
-    <header style="box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15)">
+    <header>
         <v-responsive 
             width="1300px" 
             height="100px"

@@ -62,13 +62,13 @@ export default {
     name: 'how-it-works-section',
     data: () => ({
         items: [
-            { icon: require('../../../assets/ecommerce/lock.png'), title: "Security Assurance", content: "Vulputate at quis et vitae ultricies in id. <br> Tempus felis sed dictum sapien morbi <br> ullamcorper mi, gravida fames." },
-            { icon: require('../../../assets/ecommerce/headphone.png'), title: "Best Support", content: "Need help? We’re here for you! Questions <br> on your mind? Do not worry we provide in <br> depth answer." },
-            { icon: require('../../../assets/ecommerce/payment.png'), title: "Payment simplified", content: "Nulla nisl mauris volutpat sed tellus <br> ipsum, ut a pharetra. Eget tincidunt nibh <br> sit velit tincidunt ipsum." },
+            { icon: require('~/assets/images/ecommerce/lock.png'), title: "Security Assurance", content: "Vulputate at quis et vitae ultricies in id. <br> Tempus felis sed dictum sapien morbi <br> ullamcorper mi, gravida fames." },
+            { icon: require('~/assets/images/ecommerce/headphone.png'), title: "Best Support", content: "Need help? We’re here for you! Questions <br> on your mind? Do not worry we provide in <br> depth answer." },
+            { icon: require('~/assets/images/ecommerce/payment.png'), title: "Payment simplified", content: "Nulla nisl mauris volutpat sed tellus <br> ipsum, ut a pharetra. Eget tincidunt nibh <br> sit velit tincidunt ipsum." },
         ]
     })
 }
 </script>
 <style scoped>
-    #how-it-works-section { background: url('../../../assets/ecommerce/howitworks.jpg'); }
+    #how-it-works-section { background: url('~assets/images/ecommerce/howitworks.jpg'); }
 </style>

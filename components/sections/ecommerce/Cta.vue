@@ -42,8 +42,8 @@ export default {
     name: 'cta-section',
     data: () => ({
         items: [
-            { image: require('../../../assets/cta1.jpg'), title: 'Customer Story', content: "Varius scelerisque arcu vestibulum <br>facilisis. Pellentesque venenatis nec <br>consequat vitae aenean.", btnLabel: 'Read More', btnLink: '#' },
-            { image: require('../../../assets/cta2.jpg'), title: 'Heading Title', content: "Varius scelerisque arcu vestibulum <br>facilisis. Pellentesque venenatis nec <br>consequat vitae aenean.", btnLabel: 'Contact Us', btnLink: '#' },
+            { image: require('~/assets/images/ecommerce/cta1.jpg'), title: 'Customer Story', content: "Varius scelerisque arcu vestibulum <br>facilisis. Pellentesque venenatis nec <br>consequat vitae aenean.", btnLabel: 'Read More', btnLink: '#' },
+            { image: require('~/assets/images/ecommerce/cta2.jpg'), title: 'Heading Title', content: "Varius scelerisque arcu vestibulum <br>facilisis. Pellentesque venenatis nec <br>consequat vitae aenean.", btnLabel: 'Contact Us', btnLink: '#' },
         ]
     })
 }

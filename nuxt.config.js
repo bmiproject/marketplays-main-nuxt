@@ -3,8 +3,8 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    titleTemplate: '%s - main-nuxt',
-    title: 'main-nuxt',
+    titleTemplate: '%s - marketPlays',
+    title: 'Bickert Management Inc.',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -17,6 +17,7 @@ export default {
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
+    '~/assets/style.scss'
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
@@ -70,5 +71,12 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+  },
+
+  ssr: false,
+  loadingIndicator: {
+    name: 'three-bounce',
+    color: '#BE1E2D',
+    background: 'white'
   }
 }

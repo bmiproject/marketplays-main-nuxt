@@ -7,7 +7,7 @@
             <v-row class="row1 px-md-2">
                 <v-col md="6" class="pt-15">
                     <v-img
-                        src="../../../assets/ecommerce/info1.png"
+                        :src="require('~/assets/images/ecommerce/info1.png')"
                         max-width="580px"
                     ></v-img>
                 </v-col>
@@ -74,7 +74,7 @@
                 </v-col>
                 <v-col md="6">
                     <v-img
-                        src="../../../assets/ecommerce/info2.png"
+                        :src="require('~/assets/images/ecommerce/info2.png')"
                         max-width="610px"
                         contain
                     ></v-img>

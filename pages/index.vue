@@ -20,6 +20,9 @@ import FaqSection from '~/components/sections/main/Faq'
 import CtaSection from '~/components/sections/main/Cta'
 
 export default {
+	head: {
+		title: 'Home page', 
+	},
 	name: 'Home',
 	components: {
 		HeroSection,
@@ -29,6 +32,6 @@ export default {
 		WhatsGreatSection,
 		FaqSection,
 		CtaSection,
-	}
+	},
 }
 </script>

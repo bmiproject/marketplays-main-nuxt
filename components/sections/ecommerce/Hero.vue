@@ -2,7 +2,7 @@
     <section id="hero-section">
         <v-row no-gutters>
             <v-img
-                src="../../../assets/ecommerce/hero.jpg"
+                :src="require('~/assets/images/ecommerce/hero.jpg')"
             >
                 <v-theme-provider dark>
                     <v-container fill-height>

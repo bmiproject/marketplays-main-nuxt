@@ -16,7 +16,7 @@
                         tile 
                     >
                         <v-img
-                            :src="require('../../../assets/' + logo)"
+                            :src="require('~/assets/images/' + logo)"
                             max-width="150px" 
                             class="d-inline-block"
                         >
