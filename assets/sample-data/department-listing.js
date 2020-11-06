@@ -1,6 +1,7 @@
 export default [
     {
         name: "Accounting",
+        slug: "accounting",
         services: [
             { name: 'Sed est imperdiet' },
             { name: 'Morbi sit scelerisque' },
@@ -11,6 +12,7 @@ export default [
     },
     {
         name: "Design & creative",
+        slug: "design-creative",
         services: [
             { name: 'Animation' },
             { name: 'Art & Illustration' },
@@ -26,6 +28,7 @@ export default [
     },
     {
         name: "Writing",
+        slug: 'writing',
         services: [
             { name: 'Academic Writing & Research ' },
             { name: 'Article & Blog Writing ' },
@@ -40,6 +43,7 @@ export default [
     },
     {
         name: "Information technology",
+        slug: 'information-technology',
         services: [
             { name: 'Database Administration' },
             { name: 'ERP / CRM Software' },
@@ -53,6 +57,7 @@ export default [
     },
     {
         name: "Administration",
+        slug: 'administration',
         services: [
             { name: 'Data Entry ' },
             { name: 'Personal / Virtual Assistant ' },
@@ -63,6 +68,7 @@ export default [
     },
     {
         name: "Sales & marketing",
+        slug: 'sales-marketing',
         services: [
             { name: 'Display Advertising ' },
             { name: 'Email & Marketing Automation' },
@@ -78,6 +84,7 @@ export default [
     },
     {
         name: "Customer service",
+        slug: 'customer-service',
         services: [
             { name: 'Customer Service ' },
             { name: 'Technical Support ' },
@@ -85,6 +92,7 @@ export default [
     },
     {
         name: "Project management",
+        slug: 'project-management',
         services: [
             { name: 'Leo sit odio eu vulputate netus diam' },
             { name: 'Nulla risus, sed phasellus fringilla' },
@@ -96,6 +104,7 @@ export default [
     },
     {
         name: "Research & summaries",
+        slug: 'research-summaries',
         services: [
             { name: 'Pellentesque orci, tincidunt cursus tincidunt' },
             { name: 'Pellentesque gravida enim auctor etiam sed vulputate' },
@@ -109,6 +118,7 @@ export default [
     },
     {
         name: "Business",
+        slug: 'business',
         services: [
             { name: 'Mattis rhoncus' },
             { name: 'montes, in pulvinar vitae blandit porttitor faucibus' },
@@ -121,6 +131,7 @@ export default [
     },
     {
         name: "Category Title 1",
+        slug: 'category-title-1',
         services: [
             { name: 'Leo sit odio eu vulputate netus diam' },
             { name: 'Nulla risus, sed phasellus fringilla' },
@@ -132,6 +143,7 @@ export default [
     },
     {
         name: "Category Title 2",
+        slug: 'category-title-2',
         services: [
             { name: 'Pellentesque orci, tincidunt cursus tincidunt' },
             { name: 'Pellentesque gravida enim auctor etiam sed vulputate' },

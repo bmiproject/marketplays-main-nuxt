@@ -18,31 +18,38 @@
                     :key="index"
                 >
                     <v-hover v-slot:default="{ hover }">
-                        <aside 
-                            class="department-item py-5 px-7" 
-                            style="width: 100%" 
+                        <NuxtLink 
+                            :to="item.slug ? $nuxt.$route.path + '/' + item.slug : ''" 
+                            style="width: 100%; display: block" 
+                            class="department-item"
                             :style="hover ? 'background: linear-gradient(225deg, #E25405 0%, #CA0316 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF)' : ''"
                         >
-                            <h4 
-                                v-html="item.name"
-                                class="mb-3"
-                                :style="hover ? 'color: #fff': ''"
-                            ></h4>
-                            <v-divider class="mb-5" color="white"></v-divider>
+                            <aside class="py-5 px-7">
+                                <h4 
+                                    v-html="item.name"
+                                    class="mb-3"
+                                    :style="hover ? 'color: #fff': ''"
+                                ></h4>
+                                <v-divider class="mb-5" color="white"></v-divider>
 
-                            <ul class="pl-0">
-                                <li
-                                    v-for="(item, index) in item.services"
-                                    :key="index"
-                                    class="ml-0 pl-0 mb-3"
-                                >
-                                    <NuxtLink :to="item.link || '#'" class="d-block" :style="hover ? 'color: #fff': ''">
-                                        {{ item.name }}<v-icon right small :color="hover ? 'white' : 'primary'">mdi-arrow-right</v-icon>
-                                    </NuxtLink>
-                                </li>
-                            </ul>
-                        </aside>
-                        </v-hover>
+                                <ul class="pl-0">
+                                    <li
+                                        v-for="(item, index) in item.services"
+                                        :key="index"
+                                        class="ml-0 pl-0 mb-3"
+                                    >
+                                        <NuxtLink 
+                                            :to="item.slug || '#'" 
+                                            class="d-block" 
+                                            :style="hover ? 'color: #fff': ''"
+                                        >
+                                            {{ item.name }}<v-icon right small :color="hover ? 'white' : 'primary'">mdi-arrow-right</v-icon>
+                                        </NuxtLink>
+                                    </li>
+                                </ul>
+                            </aside>
+                        </NuxtLink>
+                    </v-hover>
                 </v-col>
             </v-row>
         </v-responsive>
@@ -54,7 +61,10 @@ export default {
     name: 'department-listing',
     data: () => ({
         departments: DepartmentListing
-    })
+    }),
+    mounted() {
+        console.log(this.$nuxt.$route)
+    }
 }
 </script>
 <style scoped>
