@@ -1,5 +1,5 @@
 <template>
-    <section id="categories-section" class="pb-15">
+    <section id="categories-section">
         <v-responsive
             class="no-flex mx-auto"
             :max-width="containerSize"

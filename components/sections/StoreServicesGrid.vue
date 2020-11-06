@@ -1,5 +1,5 @@
 <template>
-    <section class="services-grid py-15">
+    <section class="services-grid">
         <v-responsive 
             :max-width="containerSize"
             class="mx-auto mb-15"

@@ -124,10 +124,9 @@ export default {
 }
 </script>
 <style scoped>
-    .footer-cont { position: relative; }
-    .footer-cont:before { content: ''; position: absolute; width: 100%; height: 60px; display: block; background: #f5f5f5; }
-    .store .footer-cont:before { background: transparent; border-bottom: 1px solid #E1E1E1; }
     p { margin-bottom: 0; font-size: 14px; }
+    #footer { border-top: 1px solid #E1E1E1; z-index: 1000; }
+    #footer-top { margin-top: -60px; }
     .footer-top-wrapper { background: linear-gradient(225deg, #E25405 0%, #CA0316 100%), #FFFFFF; border-radius: 5px; }
     ul { list-style: none; }
     ul li a { font-size: 14px; color: #555555; }

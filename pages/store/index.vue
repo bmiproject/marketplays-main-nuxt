@@ -7,7 +7,7 @@
 		<store-counters />
 		<store-testimonials />
 		<store-pricing />
-		<store-top-services />
+		<store-top-services style="padding-bottom: 100px" />
 	</div>
 </template>
 

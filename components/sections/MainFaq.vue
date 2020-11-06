@@ -1,5 +1,5 @@
 <template>
-    <section id="faq-section" class="py-10" style="background: #F5F5F5">
+    <section id="faq-section" class="pt-10" style="background: #F5F5F5">
         <v-responsive
             class="mx-auto no-flex" 
             max-width="980px"

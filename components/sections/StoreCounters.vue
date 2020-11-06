@@ -14,7 +14,7 @@
                         elevation="0"
                         class="text-center pb-3"
                     >
-                        <v-card-title>
+                        <v-card-title class="pb-0">
                             <h1 
                                 v-text="item.value"
                                 class="mx-auto mt-4"

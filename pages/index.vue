@@ -3,10 +3,10 @@
 		<main-hero />
 		<main-applications />
 		<main-sponsors />
-		<smain-ervices />
+		<main-services />
 		<main-whats-great />
 		<main-cta />
-		<main-faq />
+		<main-faq style="padding-bottom: 100px"/>
 	</div>
 </template>
 
