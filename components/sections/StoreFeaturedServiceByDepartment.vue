@@ -47,6 +47,7 @@ export default {
 }
 </script>
 <style scoped>
+    .featured-service-by-department { background: #f5f5f5; }
     .featured-department-item { background: #ffffff; border: 1px solid #E1E1E1; box-sizing: border-box; border-radius: 5px; }
     .featured-department-item:hover {  background: linear-gradient(225deg, #E25405 0%, #CA0316 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF) }
     .featured-department-item h4, 
