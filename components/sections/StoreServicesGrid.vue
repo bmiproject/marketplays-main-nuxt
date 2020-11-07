@@ -11,7 +11,7 @@
                     :key="index"
                     class="service-item"
                 >
-                    <NuxtLink :to="item.link || '#'">
+                    <NuxtLink :to="item.slug ? $nuxt.$route.path + '/' + item.slug : ''">
                         <v-img :src="item.image">
                             <v-theme-provider dark>
                                 <v-container fill-height>
@@ -38,13 +38,13 @@ export default {
     name: 'services-grid-section',
     data: () => ({
         services: [
-            { name: 'Database Administration', image: require('~/assets/images/ecommerce/database.jpg') },
-            { name: 'ERP / CRM Software', image: require('~/assets/images/ecommerce/erp.jpg') },
-            { name: 'Information Security', image: require('~/assets/images/ecommerce/info-tech1.jpg') },
-            { name: 'Network & System Administration', image: require('~/assets/images/ecommerce/network.jpg') },
-            { name: 'Front End Developer', image: require('~/assets/images/ecommerce/front-end.jpg') },
-            { name: 'Back End Developer', image: require('~/assets/images/ecommerce/back-end.jpg') },
-            { name: 'Custom Development', image: require('~/assets/images/ecommerce/custom.jpg') },
+            { name: 'Database Administration', image: require('~/assets/images/ecommerce/database.jpg'), slug: 'database-administration' },
+            { name: 'ERP / CRM Software', image: require('~/assets/images/ecommerce/erp.jpg'), slug: 'erp-crm-software' },
+            { name: 'Information Security', image: require('~/assets/images/ecommerce/info-tech1.jpg'), slug: 'information-security' },
+            { name: 'Network & System Administration', image: require('~/assets/images/ecommerce/network.jpg'), slug: 'network-system-administration' },
+            { name: 'Front End Developer', image: require('~/assets/images/ecommerce/front-end.jpg'), slug: 'front-end-developer' },
+            { name: 'Back End Developer', image: require('~/assets/images/ecommerce/back-end.jpg'), slug: 'back-end-developer' },
+            { name: 'Custom Development', image: require('~/assets/images/ecommerce/custom.jpg'), slug: 'custom-development' },
         ]
     })
 }
