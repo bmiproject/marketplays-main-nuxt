@@ -2,7 +2,7 @@ body {
     color: #555;
     p { color: #555555; font-size: 16px; }
     a { text-decoration: none; }
-    .v-main { background: #ffffff; }
+    .v-main { background: #ffffff; min-height: 150px; }
     section > .v-responsive { padding-left: 15px; padding-right: 15px; }
     #home { background: #ffffff; }
     .no-flex { flex: none !important }
