@@ -1,38 +1,31 @@
 <template>
-    <section id="sponsors-section">
-        <v-responsive 
-            class="no-flex mx-auto my-15" 
-            max-width="800px" 
-            align="center"
-        >
-            <p class="text-center">Sponsored by these companies</p>
-            <v-row dense no-gutters>
-                <v-col 
-                    align-self="center"
-                    v-for="(logo, index) in logos"
-                    :key="index">
-                    <v-card 
-                        class="d-flex"
-                        flat 
-                        tile 
-                    >
-                        <v-img
-                            :src="require('~/assets/images/' + logo)"
-                            max-width="150px" 
-                            class="d-inline-block"
-                        >
-                        </v-img>
-                    </v-card>
-                </v-col>
-            </v-row>
-        </v-responsive>
-    </section>
+  <section id="sponsors-section">
+    <v-responsive
+      class="no-flex mx-auto my-15"
+      max-width="800px"
+      align="center"
+    >
+      <p class="text-center">Sponsored by these companies</p>
+      <v-row dense no-gutters>
+        <v-col v-for="(logo, index) in logos" :key="index" align-self="center">
+          <v-card class="d-flex" flat tile>
+            <v-img
+              :src="require('~/assets/images/' + logo)"
+              max-width="150px"
+              class="d-inline-block"
+            >
+            </v-img>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-responsive>
+  </section>
 </template>
 <script>
 export default {
-    name: 'sponsors-section',
-    data: () => ({
-        logos: ['zoho.png', 'microsoft.png', 'hubspot.png', 'google.png']
-    }),
+  name: 'SponsorsSection',
+  data: () => ({
+    logos: ['zoho.png', 'microsoft.png', 'hubspot.png', 'google.png'],
+  }),
 }
 </script>
