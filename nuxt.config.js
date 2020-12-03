@@ -1,5 +1,3 @@
-import colors from 'vuetify/es5/util/colors'
-
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -8,22 +6,16 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: '' },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [
-    '~/assets/style.scss'
-  ],
+  css: ['~/assets/style.scss'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [
-    '~/plugins/GlobalMixins',
-  ],
+  plugins: ['~/plugins/Init', '~/plugins/GlobalMixins'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -64,20 +56,19 @@ export default {
         //   success: colors.green.accent3
         // },
         light: {
-          primary: "#BE1E2D"
+          primary: '#BE1E2D',
         },
-      }
-    }
+      },
+    },
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {
-  },
+  build: {},
 
   ssr: false,
   loadingIndicator: {
     name: 'three-bounce',
     color: '#BE1E2D',
-    background: 'white'
-  }
+    background: 'white',
+  },
 }
