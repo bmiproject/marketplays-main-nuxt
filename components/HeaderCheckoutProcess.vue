@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="checkout-process-header">
     <v-responsive width="1300px" height="100px" class="mx-auto no-flex">
       <v-toolbar flat class="py-5">
         <v-app-bar-nav-icon class="d-sm-none"></v-app-bar-nav-icon>
@@ -15,7 +15,7 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-row class="my-auto" no-gutters>
-          <v-col class="text-right" lg="7">
+          <v-col class="text-right" lg="6">
             <v-btn
               v-for="item in topMenu"
               :key="item.name"
@@ -32,7 +32,7 @@
 </template>
 <script>
 export default {
-  name: 'HeaderShopLayout',
+  name: 'HeaderCheckoutProcessLayout',
   data: () => ({
     topMenu: [
       { name: 'cart', label: 'Shopping Cart' },

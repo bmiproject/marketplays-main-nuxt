@@ -6,7 +6,6 @@
           class="no-flex mx-auto py-5 px-3 footer-bottom-wrapper"
           :max-width="containerSize"
         >
-          <v-divider class="mb-5"></v-divider>
           <p class="text-center">
             &copy; Copyright {{ new Date().getFullYear() }} - Bickert Management
             Inc. Marketplace. All right reserved.
@@ -18,7 +17,7 @@
 </template>
 <script>
 export default {
-  name: 'FooterShopLayout',
+  name: 'FooterCheckoutProcessLayout',
 }
 </script>
 <style scoped>
