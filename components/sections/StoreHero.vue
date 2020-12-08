@@ -77,7 +77,7 @@ export default {
     departments: [],
   }),
   mounted() {
-    this.get('departments', ['_id', 'name', 'slug'], { limit: 4 })
+    this.getList('departments', ['_id', 'name', 'slug'], { limit: 4 })
   },
 }
 </script>
