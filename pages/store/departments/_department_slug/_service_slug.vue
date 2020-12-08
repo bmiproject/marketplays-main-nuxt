@@ -12,17 +12,29 @@
                 <h1 v-text="service.name"></h1>
               </v-col>
               <v-col cols="9" class="py-0">
-                <NuxtLink :to="departmentSlug">
+                <NuxtLink
+                  :to="service.department ? service.department.slug : ``"
+                >
                   <v-btn
+                    v-if="service.department"
                     color="#F4F4F4"
                     depressed
-                    class="department-name mr-5"
+                    class="department-name mr-2"
                     small
                     v-text="service.department.name"
                   >
                   </v-btn>
                 </NuxtLink>
-                <span class="product-manager">
+                |
+                <span class="smaller-font-size mx-2">
+                  <strong>Service Code: </strong>
+                  <span v-text="service.code"></span>
+                </span>
+                |
+                <span
+                  v-if="service.projectManager"
+                  class="smaller-font-size mx-2"
+                >
                   <strong>Product Manager: </strong>
                   <span v-text="service.projectManager.fullName"></span>
                 </span>
@@ -55,7 +67,7 @@
                 </v-col>
                 <v-col>
                   <p class="my-0"><strong>Pricing:</strong></p>
-                  <p class="my-0">{{ service.pricing }}</p>
+                  <p class="my-0">{{ service.pricing | currency }}</p>
                 </v-col>
               </v-row>
             </div>
@@ -83,38 +95,54 @@
   </section>
 </template>
 <script>
+import gql from 'graphql-tag'
+
 export default {
+  name: 'SingleService',
+  apollo: {
+    service: {
+      query: gql`
+        query getOneService($filter: FilterFindOneServiceInput) {
+          getOneService(filter: $filter) {
+            name
+            code
+            image
+            description
+            seoTitle
+            seoDescription
+            seoKeywords
+            workforceThreshold
+            pricing
+            projectManager {
+              fullName
+            }
+            department {
+              name
+              slug
+            }
+            tags
+          }
+        }
+      `,
+      variables() {
+        return {
+          filter: {
+            slug: this.$route.params.service_slug,
+          },
+        }
+      },
+      update(data) {
+        return data.getOneService
+      },
+    },
+  },
+  data: () => ({
+    service: {},
+  }),
   title: {
     head: 'Service',
   },
   layout: 'ecommerce',
-  name: 'SingleService',
-  data: () => ({
-    service: {
-      name: 'Front End Development',
-      department: {
-        slug: 'information-technology',
-        name: 'Information Technology',
-      },
-      projectManager: {
-        fullName: 'Kevin Jones',
-      },
-      description: `<p>Odio ac dapibus in sed nunc amet nibh porttitor. Nulla eget lacus, mi eget nibh felis. Tincidunt purus elementum nunc non. Posuere lorem vel molestie justo, est eu, tempus arcu et. Lacinia eu justo, duis enim, quis amet fermentum. Sit augue nam turpis elementum penatibus. Convallis turpis mattis faucibus a egestas turpis tristique amet vel. Mauris nec gravida neque vestibulum diam sit in mauris. Ut ullamcorper amet pretium amet vestibulum ornare diam pulvinar morbi. </p>
-            <p>Pharetra orci posuere lectus volutpat. Diam sit duis in non vitae, ante id. Sed mauris faucibus metus malesuada quam laoreet mauris blandit. Sit velit a gravida pellentesque tristique odio. Pulvinar fusce senectus gravida lacinia vitae tortor, volutpat convallis tincidunt. Phasellus consectetur turpis imperdiet adipiscing aliquam cras magna iaculis. Aenean aenean scelerisque lacus, magna interdum in blandit. Id etiam tellus est vel at orci.</p>`,
-      pricing: 1000,
-      workforceThreshold: 100,
-      shortDescription:
-        'Pharetra orci posuere lectus volutpat. Diam sit duis in non vitae',
-      tags: ['graphics', 'seo', 'web development', 'web', 'web design'],
-    },
-  }),
-  computed: {
-    departmentSlug() {
-      return this.service.department
-        ? this.storeUrl + '/departments/' + this.service.department.slug
-        : ''
-    },
-  },
 }
 </script>
 <style scoped>
