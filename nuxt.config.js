@@ -49,7 +49,7 @@ export default {
       // See 'apollo' definition
       // For example: default query options
       $query: {
-        loadingKey: 'loading',
+        // loadingKey: 'loading',
         // fetchPolicy: 'no-cache',
       },
     },
