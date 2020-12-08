@@ -104,6 +104,7 @@ export default {
       query: gql`
         query getOneService($filter: FilterFindOneServiceInput) {
           getOneService(filter: $filter) {
+            _id
             name
             code
             image
