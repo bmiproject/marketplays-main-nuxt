@@ -1,3 +1,5 @@
+import Config from './config'
+
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -34,7 +36,24 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxtjs/apollo',
   ],
+
+  apollo: {
+    clientConfigs: {
+      default: {
+        httpEndpoint: Config.apiUrl,
+      },
+    },
+    defaultOptions: {
+      // See 'apollo' definition
+      // For example: default query options
+      $query: {
+        loadingKey: 'loading',
+        // fetchPolicy: 'no-cache',
+      },
+    },
+  },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
