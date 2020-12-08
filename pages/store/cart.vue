@@ -108,13 +108,18 @@
               </h5>
             </v-col>
           </v-row>
-          <v-row class="mt-10">
+          <v-row class="mt-8">
             <v-spacer></v-spacer>
             <v-col cols="5" class="text-center">
               <v-btn block dark large color="#111111">
                 Continue to Checkout
               </v-btn>
-              <p>You won't be charged yet</p>
+              <p class="smaller-font-size mt-10">You won't be charged yet</p>
+              <v-img
+                src="/credit-cards.png"
+                max-width="235px"
+                class="mx-auto"
+              />
             </v-col>
           </v-row>
         </v-col>

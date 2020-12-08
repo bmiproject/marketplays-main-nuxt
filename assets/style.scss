@@ -1,6 +1,11 @@
+$body-font-size: 16px;
+$larger-font: $body-font-size + 2;
+$smaller-font: $body-font-size - 2;
+
 body {
   color: #555;
-  p { color: #555555; font-size: 16px; }
+  p { color: #555555; font-size: $body-font-size; }
+  .smaller-font-size { font-size: $smaller-font; }
   a { text-decoration: none; }
   .v-main { background: #ffffff; min-height: 150px; }
   section > .v-responsive { padding-left: 15px; padding-right: 15px; }
@@ -23,7 +28,7 @@ body {
   .header-nav { 
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15); 
     z-index: 100;
-    .v-btn { text-transform: none; font-size: 14px; } 
+    .v-btn { text-transform: none; font-size: $smaller-font; } 
   }
   .store-cart {
     .subscription-types {
@@ -39,13 +44,13 @@ body {
     .cart-items {
       .item-image { border-radius: 4px; }
       .item-name { font-size: 18px; }
-      .item-department { background-color: #F4F4F4; font-size: 14px; color: #777777; border-radius: 4px; }
+      .item-department { background-color: #F4F4F4; font-size: $smaller-font; color: #777777; border-radius: 4px; }
       .remove-item { font-size: 12px; }
       .item-price { font-size: 24px; }
     }
 
     .subscription-type-selected {
-      .service-item { font-size: 14px; color: #999999; }
+      .service-item { font-size: $smaller-font; color: #999999; }
     }
   }
 
