@@ -46,16 +46,20 @@
                     </template>
                   </v-text-field>
                   <div class="text-center">
-                    <v-btn
-                      v-for="(item, index) in categories"
-                      :key="index"
-                      class="mr-3"
-                      small
-                      outlined
-                      color="rgba(255, 255, 255, 0.8)"
-                      v-text="item.label"
+                    <NuxtLink
+                      v-for="item in departments"
+                      :key="item._id"
+                      :to="item.slug || ''"
                     >
-                    </v-btn>
+                      <v-btn
+                        class="mr-3"
+                        small
+                        outlined
+                        color="rgba(255, 255, 255, 0.8)"
+                        v-text="item.name"
+                      >
+                      </v-btn>
+                    </NuxtLink>
                   </div>
                 </v-responsive>
               </v-col>
@@ -70,12 +74,11 @@
 export default {
   name: 'HeroSection',
   data: () => ({
-    categories: [
-      { label: 'Sales & marketing' },
-      { label: 'Support' },
-      { label: 'Accounting' },
-    ],
+    departments: [],
   }),
+  mounted() {
+    this.get('departments', ['_id', 'name', 'slug'], { limit: 4 })
+  },
 }
 </script>
 <style scoped>
