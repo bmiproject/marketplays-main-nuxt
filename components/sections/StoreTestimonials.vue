@@ -24,7 +24,6 @@
                   :key="index"
                   :data-index="index"
                   :data-name="index"
-                  @slideclick="handleSlideClick"
                 >
                   <v-img
                     v-if="item.avatar"
