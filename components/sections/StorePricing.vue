@@ -46,14 +46,13 @@
             <p
               :class="{ 'pricing-text': true, 'white--text': item.bestValue }"
               :style="item.pricingTextStyle"
-              v-text="item.pricingText"
+              v-html="item.pricingText"
             ></p>
             <v-divider color="#E1E1E1" class="mt-10"></v-divider>
             <v-card-text>
-              <div
-                :class="{ 'content mt-5': true }"
-                v-html="item.content"
-              ></div>
+              <div :class="{ 'content mt-5': true }" class="px-5">
+                <p v-html="item.content"></p>
+              </div>
             </v-card-text>
             <v-card-actions>
               <v-btn
