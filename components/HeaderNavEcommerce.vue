@@ -4,13 +4,13 @@
       <NuxtLink
         v-for="(item, index) in navs"
         :key="index"
-        :to="item.link || '#'"
+        :to="item.slug || '#'"
       >
         <v-btn text depressed x-large tile>
           <v-icon v-if="item.icon && item.iconPosition == `left`" left>{{
             item.icon
           }}</v-icon>
-          {{ item.label }}
+          {{ item.name }}
           <v-icon v-if="item.icon && item.iconPosition == `right`" right>{{
             item.icon
           }}</v-icon>
@@ -20,25 +20,42 @@
   </nav>
 </template>
 <script>
+import gql from 'graphql-tag'
+
 export default {
-  name: 'HeaderNav',
+  name: 'HeaderNavEcommerce',
+  apollo: {
+    departments: {
+      query: gql`
+        query {
+          departments(limit: 8) {
+            _id
+            name
+            slug
+          }
+        }
+      `,
+      update(data) {
+        return data.departments
+      },
+    },
+  },
   data: () => ({
-    navs: [
-      { label: 'Web Dev' },
-      { label: 'Mobile Dev' },
-      { label: 'Design' },
-      { label: 'Writing' },
-      { label: 'Admin Support' },
-      { label: 'Customer Service' },
-      { label: 'Marketing' },
-      { label: 'Accounting' },
-      {
-        label: 'See All Categories',
+    departments: [],
+  }),
+  computed: {
+    navs() {
+      const seeMore = {
+        name: 'See All Categories',
         link: 'store/departments',
         icon: 'mdi-chevron-down',
         iconPosition: 'right',
-      },
-    ],
-  }),
+      }
+      const navs = this.departments
+      navs.push(seeMore)
+
+      return navs
+    },
+  },
 }
 </script>
