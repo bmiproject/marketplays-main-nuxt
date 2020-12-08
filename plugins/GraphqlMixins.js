@@ -1,14 +1,13 @@
 import swal from 'sweetalert'
 import Vue from 'vue'
 import gql from 'graphql-tag'
-import _forEach from 'lodash/forEach'
 
 Vue.mixin({
   data: () => ({
     isLoading: false,
   }),
   methods: {
-    get(model = null, fieldsNeeded = [], filters = null) {
+    getList(model = null, fieldsNeeded = [], filters = null) {
       if (!model)
         return swal({
           icon: 'error',

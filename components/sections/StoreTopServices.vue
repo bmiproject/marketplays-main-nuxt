@@ -34,7 +34,7 @@ export default {
     services: [],
   }),
   mounted() {
-    this.get('services', ['_id', 'name', 'slug'], { limit: 47 })
+    this.getList('services', ['_id', 'name', 'slug'], { limit: 47 })
   },
 }
 </script>
