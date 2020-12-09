@@ -1,6 +1,14 @@
 <template>
   <aside id="single-service-sidebar" class="pt-3">
-    <v-btn block color="primary" x-large class="subscribe-btn">Subscribe</v-btn>
+    <v-btn
+      block
+      color="primary"
+      x-large
+      class="subscribe-btn"
+      @click.prevent="addToCart"
+    >
+      Subscribe
+    </v-btn>
     <div class="contact-us-cont px-5 py-3 my-5">
       <v-btn block class="contact-us-btn" tile depressed outlined color="#555"
         >Contact Us</v-btn
@@ -57,10 +65,22 @@
 <script>
 import DepartmentListing from '~/assets/sample-data/department-listing'
 export default {
-  name: 'single-service-sidebar',
+  name: 'SingleServiceSidebar',
+  props: {
+    service: {
+      type: Object,
+      required: true,
+    },
+  },
   data: () => ({
     departments: DepartmentListing,
   }),
+  methods: {
+    addToCart() {
+      this.$store.commit('updateCart', this.service)
+      this.$router.push(`${this.storeUrl}/cart`)
+    },
+  },
 }
 </script>
 <style scoped>

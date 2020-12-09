@@ -47,13 +47,15 @@
           <v-row v-for="(item, index) in cartItems" :key="index">
             <v-col cols="2" class="pr-0">
               <v-img
-                :src="item.image"
+                :src="item.image || `/image-placeholder.jpg`"
                 class="item-image"
                 max-width="100px"
               ></v-img>
             </v-col>
             <v-col cols="8" class="pl-0 ml-n3">
-              <p class="item-name font-weight-bold mb-2">{{ item.name }}</p>
+              <p class="item-name font-weight-bold mb-2">
+                <NuxtLink :to="item.slug || ``" v-text="item.name"></NuxtLink>
+              </p>
               <p class="mb-5">
                 <span class="item-department px-2 py-1">{{
                   item.department.name
@@ -141,35 +143,6 @@ export default {
     form: {
       subscriptionType: null,
     },
-    cartItems: [
-      {
-        _id: 1001,
-        name: 'Front End Development',
-        pricing: 55,
-        department: {
-          name: 'Information Technology',
-        },
-        image: '/cart-item.jpg',
-      },
-      {
-        _id: 1002,
-        name: 'Web Development',
-        pricing: 55,
-        department: {
-          name: 'Information Technology',
-        },
-        image: '/cart-item.jpg',
-      },
-      {
-        _id: 1003,
-        name: 'Web Design',
-        pricing: 55,
-        department: {
-          name: 'Information Technology',
-        },
-        image: '/cart-item.jpg',
-      },
-    ],
     subscriptionTypes: [
       {
         _id: 1,
@@ -222,6 +195,9 @@ export default {
     },
   }),
   computed: {
+    cartItems() {
+      return this.$store.state.cart
+    },
     subscriptionTypeDetails() {
       /** Check if services inside the selected subscription type is already in the cart */
       const services = _map(
@@ -251,11 +227,7 @@ export default {
         dangerMode: true,
       }).then((willDelete) => {
         if (willDelete) {
-          const currentItemIndex = this.cartItems.findIndex(
-            (o) => item._id === o._id
-          )
-
-          this.cartItems.splice(currentItemIndex, 1)
+          this.$store.commit('removeCartItem', item)
         }
       })
     },

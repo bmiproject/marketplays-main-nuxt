@@ -88,7 +88,7 @@
           </div>
         </v-col>
         <v-col cols="3" class="pl-5">
-          <single-service-sidebar />
+          <single-service-sidebar :service="service" />
         </v-col>
       </v-row>
     </v-responsive>
