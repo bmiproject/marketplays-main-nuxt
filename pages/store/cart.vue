@@ -21,7 +21,10 @@
               >
                 <template slot="label">
                   <p class="mb-4" style="width: 100%">
-                    {{ `${item.name} (${item.discountPercentage}%)` }}
+                    {{ item.name }}
+                    <span v-if="item.discountPercentage">
+                      {{ `(${item.discountPercentage}%)` }}
+                    </span>
                   </p>
                   <v-tooltip top max-width="225px">
                     <template v-slot:activator="{ on, attrs }">
@@ -44,6 +47,11 @@
         </v-col>
         <v-spacer></v-spacer>
         <v-col cols="8" class="pt-8 cart-items">
+          <v-row v-if="!cartItems.length">
+            <v-col cols="12">
+              <no-data-message message="No items on the cart" />
+            </v-col>
+          </v-row>
           <v-row v-for="(item, index) in cartItems" :key="index">
             <v-col cols="2" class="pr-0">
               <v-img
@@ -143,43 +151,7 @@ export default {
     form: {
       subscriptionType: null,
     },
-    subscriptionTypes: [
-      {
-        _id: 1,
-        name: 'One off purchases/Individual Purchases/Ala carte',
-        discountPercentage: 10,
-        description:
-          'Aliquet senectus consectetur senectus proin sed imperdiet justo. Iaculis dignissim nullam lectus interdum.',
-      },
-      {
-        _id: 2,
-        name: 'Bundled packages',
-        discountPercentage: 20,
-        description:
-          'Aliquet senectus consectetur senectus proin sed imperdiet justo. Iaculis dignissim nullam lectus interdum.',
-      },
-      {
-        _id: 3,
-        name: 'Departmental Subscription',
-        discountPercentage: 30,
-        description:
-          'Aliquet senectus consectetur senectus proin sed imperdiet justo. Iaculis dignissim nullam lectus interdum.',
-      },
-      {
-        _id: 4,
-        name: 'Multi Departments Combo Subscription',
-        discountPercentage: 40,
-        description:
-          'Aliquet senectus consectetur senectus proin sed imperdiet justo. Iaculis dignissim nullam lectus interdum.',
-      },
-      {
-        _id: 5,
-        name: 'Wellth management clients',
-        discountPercentage: 50,
-        description:
-          'Aliquet senectus consectetur senectus proin sed imperdiet justo. Iaculis dignissim nullam lectus interdum.',
-      },
-    ],
+    subscriptionTypes: [],
     subscriptionTypeSelected: {
       name: 'Departmental Subscription Discount',
       discountPercentage: '12',
@@ -216,6 +188,9 @@ export default {
     subTotal() {
       return _sumBy(this.cartItems, (o) => o.pricing)
     },
+  },
+  mounted() {
+    this.getList('subscriptionTypes', ['_id', 'name', 'description'])
   },
   methods: {
     removeCartItem(item) {

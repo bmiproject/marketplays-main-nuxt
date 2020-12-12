@@ -8,9 +8,11 @@ export const state = () => ({
 export const mutations = {
   updateCart({ cart }, item) {
     /** To be updated if physical product is introduce */
-    if (_find(cart, (o) => o._id === item._id)) return false
-
-    cart.push(item)
+    if (_find(cart, (o) => o._id === item._id)) {
+      cart.map((o) => (o._id === item._id ? item : o))
+    } else {
+      cart.push(item)
+    }
   },
   removeCartItem(state, item) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
