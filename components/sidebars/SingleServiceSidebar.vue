@@ -63,7 +63,6 @@
   </aside>
 </template>
 <script>
-import DepartmentListing from '~/assets/sample-data/department-listing'
 export default {
   name: 'SingleServiceSidebar',
   props: {
@@ -73,14 +72,17 @@ export default {
     },
   },
   data: () => ({
-    departments: DepartmentListing,
+    departments: [],
   }),
+  mounted() {
+    this.getList('departments', ['_id', 'name'])
+  },
   methods: {
     addToCart() {
       this.$store.commit('updateCart', this.service)
       this.$router.push(`${this.storeUrl}/cart`)
     },
-  },
+  }
 }
 </script>
 <style scoped>

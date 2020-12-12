@@ -106,6 +106,7 @@ export default {
           getOneService(filter: $filter) {
             _id
             name
+            slug
             code
             image
             description
