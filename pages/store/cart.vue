@@ -121,9 +121,11 @@
           <v-row class="mt-8">
             <v-spacer></v-spacer>
             <v-col cols="5" class="text-center">
-              <v-btn block dark large color="#111111">
-                Continue to Checkout
-              </v-btn>
+              <NuxtLink :to="`${storeUrl}/checkout`">
+                <v-btn block dark large color="#111111">
+                  Continue to Checkout
+                </v-btn>
+              </NuxtLink>
               <p class="smaller-font-size mt-10">You won't be charged yet</p>
               <v-img
                 src="/credit-cards.png"
@@ -191,6 +193,7 @@ export default {
   },
   mounted() {
     this.getList('subscriptionTypes', ['_id', 'name', 'description'])
+    this.$store.commit('setCheckProcessPage', 1)
   },
   methods: {
     removeCartItem(item) {

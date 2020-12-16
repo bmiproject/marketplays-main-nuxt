@@ -3,6 +3,7 @@ import _filter from 'lodash/filter'
 
 export const state = () => ({
   cart: [],
+  checkoutProcessPageNumber: 1,
 })
 
 export const mutations = {
@@ -17,5 +18,8 @@ export const mutations = {
   removeCartItem(state, item) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     state.cart = _filter(state.cart, (o) => o._id !== item._id)
+  },
+  setCheckProcessPage(state, currentPageNumber) {
+    state.checkoutProcessPageNumber = currentPageNumber
   },
 }

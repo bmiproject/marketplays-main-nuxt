@@ -4,14 +4,9 @@
       <v-toolbar flat class="py-5">
         <v-app-bar-nav-icon class="d-sm-none"></v-app-bar-nav-icon>
         <v-toolbar-title>
-          <a href="/">
-            <v-img
-              alt="BMI Logo"
-              contain
-              :src="require('~/static/logo.png')"
-              width="345px"
-            />
-          </a>
+          <NuxtLink to="/">
+            <v-img alt="BMI Logo" contain src="/logo.png" width="345px" />
+          </NuxtLink>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-row class="my-auto" no-gutters>
