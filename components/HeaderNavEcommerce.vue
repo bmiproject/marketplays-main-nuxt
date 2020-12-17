@@ -47,7 +47,7 @@ export default {
     navs() {
       const seeMore = {
         name: 'See All Categories',
-        link: 'store/departments',
+        slug: '/store/departments',
         icon: 'mdi-chevron-down',
         iconPosition: 'right',
       }
