@@ -74,5 +74,8 @@ body {
     }
   }
 
-
+  .v-text-field.v-text-field--enclosed .v-text-field__details {
+    padding: 0;
+    text-transform: uppercase;
+  }
 }
