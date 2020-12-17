@@ -141,10 +141,6 @@
 </template>
 <script>
 import swal from 'sweetalert'
-import _map from 'lodash/map'
-import _merge from 'lodash/merge'
-import _find from 'lodash/find'
-import _sumBy from 'lodash/sumBy'
 
 export default {
   name: 'Cart',
@@ -154,43 +150,7 @@ export default {
       subscriptionType: null,
     },
     subscriptionTypes: [],
-    subscriptionTypeSelected: {
-      name: 'Departmental Subscription Discount',
-      discountPercentage: '12',
-      services: [
-        { _id: 1001, name: 'Front end Development' },
-        { _id: 1002, name: 'Web Development' },
-        { _id: 1003, name: 'Web Design' },
-        { _id: 1004, name: 'Database Administration' },
-        { _id: 1005, name: 'ERP / CRM Software' },
-        { _id: 1006, name: 'Information Security' },
-        { _id: 1007, name: 'Network & System Administration' },
-      ],
-    },
   }),
-  computed: {
-    cartItems() {
-      return this.$store.state.cart
-    },
-    subscriptionTypeDetails() {
-      /** Check if services inside the selected subscription type is already in the cart */
-      const services = _map(
-        this.subscriptionTypeSelected.services,
-        (service) => {
-          return _find(this.cartItems, (item) => {
-            return item._id === service._id
-          })
-            ? _merge(service, { isInCart: true })
-            : service
-        }
-      )
-
-      return _merge(this.subscriptionTypeSelected, { services })
-    },
-    subTotal() {
-      return _sumBy(this.cartItems, (o) => o.pricing)
-    },
-  },
   mounted() {
     this.getList('subscriptionTypes', ['_id', 'name', 'description'])
     this.$store.commit('setCheckProcessPage', 1)

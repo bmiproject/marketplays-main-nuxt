@@ -5,7 +5,7 @@
         <v-col cols="12">
           <h4 class="mb-2">Billing Details</h4>
         </v-col>
-        <v-col cols="6">
+        <v-col cols="6" class="pr-10">
           <ValidationObserver ref="observer" v-slot="{ handleSubmit }">
             <form @submit.prevent="handleSubmit(submit)">
               <ValidationProvider
@@ -129,12 +129,70 @@
             </form>
           </ValidationObserver>
         </v-col>
+        <v-col cols="6" class="pl-10">
+          <v-card class="order-summary" elevation="0" outlined>
+            <v-card-title class="px-7 pt-7">
+              <h5>Order Summary</h5>
+            </v-card-title>
+            <v-card-text class="px-7">
+              <v-row v-for="(item, index) in cartItems" :key="index">
+                <v-col cols="2" class="pr-0">
+                  <v-img
+                    :src="item.image || `/image-placeholder.jpg`"
+                    class="item-image"
+                    max-width="50px"
+                    max-height="30px"
+                  ></v-img>
+                </v-col>
+                <v-col cols="7" class="pl-0 ml-n3">
+                  <p class="item-name font-weight-bold mt-1 larger-font-size">
+                    <NuxtLink
+                      :to="item.slug || ``"
+                      v-text="item.name"
+                    ></NuxtLink>
+                  </p>
+                </v-col>
+                <v-col cols="3">
+                  <p class="item-price text-right">
+                    {{ item.pricing | currency }}
+                  </p>
+                </v-col>
+              </v-row>
+              <v-row class="subscription-type-selected">
+                <v-col cols="10">
+                  <p class="mb-2">
+                    {{ subscriptionTypeSelected.name }}
+                    {{ `(${subscriptionTypeSelected.discountPercentage}%)` }}
+                  </p>
+                </v-col>
+                <v-col cols="2">
+                  {{ subscriptionDiscountValue | currency }}
+                </v-col>
+              </v-row>
+            </v-card-text>
+            <v-divider></v-divider>
+            <v-card-actions class="px-7">
+              <v-row>
+                <v-col>
+                  <h5 class="font-weight-bold text-left text-uppercase">
+                    Total
+                  </h5>
+                </v-col>
+              </v-row>
+              <v-col cols="6">
+                <h5 class="font-weight-medium text-right">
+                  {{ subTotal | currency }}
+                </h5>
+              </v-col>
+            </v-card-actions>
+          </v-card>
+        </v-col>
       </v-row>
     </v-responsive>
   </section>
 </template>
 <script>
-import { sumBy as _sumBy, find as _find } from 'lodash'
+import { find as _find } from 'lodash'
 import Countries from '@/assets/json/countries'
 
 export default {
@@ -145,12 +203,6 @@ export default {
     countries: Countries,
   }),
   computed: {
-    cartItems() {
-      return this.$store.state.cart
-    },
-    subTotal() {
-      return _sumBy(this.cartItems, (o) => o.pricing)
-    },
     states() {
       const selectedCountry = _find(
         this.countries,

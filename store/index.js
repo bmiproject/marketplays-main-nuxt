@@ -3,6 +3,19 @@ import _filter from 'lodash/filter'
 
 export const state = () => ({
   cart: [],
+  subscriptionTypeSelected: {
+    name: 'Departmental Subscription Discount',
+    discountPercentage: '12',
+    services: [
+      { _id: 1001, name: 'Front end Development' },
+      { _id: 1002, name: 'Web Development' },
+      { _id: 1003, name: 'Web Design' },
+      { _id: 1004, name: 'Database Administration' },
+      { _id: 1005, name: 'ERP / CRM Software' },
+      { _id: 1006, name: 'Information Security' },
+      { _id: 1007, name: 'Network & System Administration' },
+    ],
+  },
   checkoutProcessPageNumber: 1,
 })
 
