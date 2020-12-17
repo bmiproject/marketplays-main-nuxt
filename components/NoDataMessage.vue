@@ -1,5 +1,5 @@
 <template>
-  <v-alert prominent text :type="type">
+  <v-alert prominent text :type="type" light :color="color">
     {{ message }}
   </v-alert>
 </template>
@@ -10,6 +10,10 @@ export default {
     type: {
       type: String,
       default: 'warning',
+    },
+    color: {
+      type: String,
+      default: '',
     },
     message: {
       type: String,

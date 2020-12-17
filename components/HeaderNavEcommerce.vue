@@ -21,6 +21,7 @@
 </template>
 <script>
 import gql from 'graphql-tag'
+import { find as _find } from 'lodash'
 
 export default {
   name: 'HeaderNavEcommerce',
@@ -52,7 +53,8 @@ export default {
         iconPosition: 'right',
       }
       const navs = this.departments
-      navs.push(seeMore)
+
+      if (!_find(navs, (o) => o.name === seeMore.name)) navs.push(seeMore)
 
       return navs
     },

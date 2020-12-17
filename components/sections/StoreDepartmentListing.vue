@@ -1,7 +1,7 @@
 <template>
   <section class="department-listing text-center pb-5">
     <div class="py-10">
-      <h1 class="mb-3">Browse scelerisque sollicitudin by category</h1>
+      <h1 class="mb-3">Browse by department</h1>
       <p class="mb-3">
         Find the right freelancer or agency for your project on the world’s
         largest hiring platform connecting savvy businesses and professional
@@ -58,6 +58,11 @@
                     </NuxtLink>
                   </li>
                 </ul>
+                <no-data-message
+                  v-if="!item.services.length"
+                  message="No service for department yet."
+                  :color="hover ? '#fff' : ''"
+                />
               </aside>
             </NuxtLink>
           </v-hover>
@@ -67,12 +72,22 @@
   </section>
 </template>
 <script>
-import DepartmentListing from '~/assets/sample-data/department-listing'
 export default {
   name: 'DepartmentListing',
   data: () => ({
-    departments: DepartmentListing,
+    departments: [],
   }),
+  mounted() {
+    this.getList('departments', [
+      '_id',
+      'name',
+      'slug',
+      `services {
+        name
+        slug
+      }`,
+    ])
+  },
 }
 </script>
 <style scoped>
