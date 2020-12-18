@@ -8,7 +8,7 @@
     "start": "nuxt-ts start",
     "generate": "nuxt-ts generate",
     "test": "jest",
-    "deploy:staging": "pm2 deploy ecosystem.config.js staging --force"
+    "deploy:staging": "pm2 deploy ecosystem.config.js staging"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^2.0.0",
