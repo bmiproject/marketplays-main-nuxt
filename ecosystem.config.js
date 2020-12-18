@@ -43,7 +43,7 @@ module.exports = {
       'pre-deploy-local': '',
       'post-deploy':
         'yarn install && yarn build && pm2 reload ecosystem.config.js --env staging',
-      'pre-setup': '',
+      'pre-setup': 'rm -rf /home/marketplays/public_html/staging/main',
       env: {
         NODE_ENV: 'staging',
       },
