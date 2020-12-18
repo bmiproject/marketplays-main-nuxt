@@ -88,8 +88,6 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
-
-  ssr: false,
   loadingIndicator: {
     name: 'three-bounce',
     color: '#BE1E2D',
