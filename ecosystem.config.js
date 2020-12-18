@@ -23,15 +23,18 @@ module.exports = {
       'pre-setup': '',
     },
     staging: {
-      user: 'root',
+      user: 'frontend_main',
       host: 'staging.marketplays.app',
       ref: 'origin/staging',
       repo: 'git@github.com:bmiproject/marketplays-main-nuxt.git',
       path: '/home/marketplays/public_html/staging/main',
       'pre-deploy-local': '',
       'post-deploy':
-        'npm install && pm2 reload ecosystem.config.js --env development',
+        'npm install && pm2 reload ecosystem.config.js --env staging',
       'pre-setup': '',
+      env: {
+        NODE_ENV: 'staging',
+      },
     },
   },
 }
