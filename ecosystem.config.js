@@ -1,15 +1,27 @@
 module.exports = {
   apps: [
     {
-      script: 'index.js',
-      watch: '.',
-    },
-    {
-      script: './service-worker/',
-      watch: ['./service-worker'],
+      name: 'marketPlays',
+      script: './node_modules/nuxt/bin/nuxt.js',
+      args: 'start',
+      watch: false,
+      env_production: {
+        NODE_ENV: 'production',
+        BASE_URL: '',
+        API_BASE_URL: '',
+      },
+      env_staging: {
+        NODE_ENV: 'staging',
+        BASE_URL: 'https://staging.marketplays.app',
+        API_BASE_URL: 'http://localhost:5001',
+      },
+      env: {
+        NODE_ENV: 'development',
+        BASE_URL: 'https://localhost:3000',
+        API_BASE_URL: 'http://localhost:5001',
+      },
     },
   ],
-
   deploy: {
     production: {
       user: 'SSH_USERNAME',
@@ -19,18 +31,18 @@ module.exports = {
       path: 'DESTINATION_PATH',
       'pre-deploy-local': '',
       'post-deploy':
-        'npm install && pm2 reload ecosystem.config.js --env production',
+        'yarn install && yarn build && pm2 reload ecosystem.config.js --env production',
       'pre-setup': '',
     },
     staging: {
-      user: 'frontend_main',
+      user: 'root',
       host: 'staging.marketplays.app',
       ref: 'origin/staging',
-      repo: 'git@github.com:bmiproject/marketplays-main-nuxt.git',
+      repo: 'https://github.com/bmiproject/marketplays-main-nuxt.git',
       path: '/home/marketplays/public_html/staging/main',
       'pre-deploy-local': '',
       'post-deploy':
-        'npm install && pm2 reload ecosystem.config.js --env staging',
+        'yarn install && yarn build && pm2 reload ecosystem.config.js --env staging',
       'pre-setup': '',
       env: {
         NODE_ENV: 'staging',

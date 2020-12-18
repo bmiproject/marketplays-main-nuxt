@@ -1,5 +1,3 @@
-import Config from './config'
-
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -47,7 +45,7 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: Config.apiUrl,
+        httpEndpoint: process.env.API_BASE_URL || 'http://localhost:5001',
       },
     },
     defaultOptions: {
@@ -87,10 +85,13 @@ export default {
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {},
+  build: {
+    transpile: ['vee-validate/dist/rules'],
+  },
   loadingIndicator: {
     name: 'three-bounce',
     color: '#BE1E2D',
     background: 'white',
   },
+
 }
