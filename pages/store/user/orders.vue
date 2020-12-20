@@ -9,6 +9,12 @@
             :headers="headers"
             item-key="orderNumber"
           >
+            <template slot="item.orderNumber" slot-scope="row">
+              <NuxtLink :to="`${storeUrl}/user/orders/${row.item.orderNumber}`">
+                {{ row.item.orderNumber }}
+                <v-icon right small color="primary">mdi-open-in-new</v-icon>
+              </NuxtLink>
+            </template>
             <template slot="item.subscriptions" slot-scope="row">
               <div
                 v-for="(orderline, orderlineIndex) in row.item.orderlines"
@@ -43,7 +49,7 @@ export default {
         text: 'Order Number',
         align: 'start',
         value: 'orderNumber',
-        width: '150px',
+        width: '170px',
       },
       {
         text: 'Subscriptions',
