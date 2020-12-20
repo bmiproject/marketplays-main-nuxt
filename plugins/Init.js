@@ -41,3 +41,7 @@ Vue.use(VueCurrencyFilter, {
   symbolSpacing: false,
   avoidEmptyDecimals: undefined,
 })
+
+if (!Vue.moment) {
+  Vue.use(require('vue-moment'))
+}
