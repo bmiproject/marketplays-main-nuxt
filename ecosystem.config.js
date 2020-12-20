@@ -2,6 +2,8 @@ module.exports = {
   apps: [
     {
       name: 'marketPlays',
+      exec_mode: 'cluster',
+      instances: 'max',
       script: './node_modules/nuxt/bin/nuxt.js',
       args: 'start',
       watch: false,
@@ -43,7 +45,7 @@ module.exports = {
       'pre-deploy-local': '',
       'post-deploy':
         'yarn install && yarn build && pm2 reload ecosystem.config.js --env staging',
-      'pre-setup': 'rm -rf /home/marketplays/public_html/staging/main',
+      'pre-setup': '',
       env: {
         NODE_ENV: 'staging',
       },
