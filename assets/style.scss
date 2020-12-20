@@ -75,6 +75,28 @@ body {
     }
   }
 
+  .store-checkout {
+    .order-summary {
+      .item-image { border-radius: 5px; vertical-align: middle; }
+      .item-name {
+        a { color: #555555; }
+      }
+      .mini-cart-footer { background-color: #f4f4f4; }
+    }
+    .payment-methods {
+      .payment-item {
+        background-color: #f4f4f4;
+        border-radius: 4px;
+        border: 1px solid #E1E1E1;
+
+        &.selected {
+          background-color: #ffffff;
+          border-color: #1358B5;
+        }
+      }
+    }
+  }
+
   .v-text-field.v-text-field--enclosed .v-text-field__details {
     padding: 0;
     text-transform: uppercase;
