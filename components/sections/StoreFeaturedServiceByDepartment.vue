@@ -9,14 +9,18 @@
       </p>
       <v-row>
         <v-col
-          v-for="(item, index) in featuredDepartments"
+          v-for="(item, index) in departments"
           :key="index"
           cols="12"
           class="featured-department-item mb-3 pa-0"
         >
           <v-row no-gutters>
             <v-col cols="4">
-              <v-img :src="item.image"></v-img>
+              <v-img
+                :src="item.image || '/image-placeholder.jpg'"
+                max-height="300px"
+                max-width="450px"
+              ></v-img>
             </v-col>
             <v-col class="pa-10">
               <h4 class="mb-3" v-text="item.name"></h4>
@@ -40,12 +44,23 @@
   </section>
 </template>
 <script>
-import FeaturedDepartments from '~/assets/sample-data/featured-departments'
 export default {
   name: 'FeaturedServiceByDepartment',
   data: () => ({
-    featuredDepartments: FeaturedDepartments,
+    departments: [],
   }),
+  mounted() {
+    this.getList('departments', [
+      '_id',
+      'name',
+      'slug',
+      'description',
+      `services {
+        name
+        slug
+      }`,
+    ])
+  },
 }
 </script>
 <style scoped>
