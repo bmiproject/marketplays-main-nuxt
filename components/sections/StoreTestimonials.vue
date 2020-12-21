@@ -14,34 +14,36 @@
               style="z-index: 1000"
             >
               <h3 class="my-10">What People Say</h3>
-              <carousel
-                :per-page="1"
-                :pagination-active-color="'#FFFFFF'"
-                :pagination-color="'#DDDDDD'"
-              >
-                <slide
-                  v-for="(item, index) in items"
-                  :key="index"
-                  :data-index="index"
-                  :data-name="index"
+              <client-only>
+                <carousel
+                  :per-page="1"
+                  :pagination-active-color="'#FFFFFF'"
+                  :pagination-color="'#DDDDDD'"
                 >
-                  <v-img
-                    v-if="item.avatar"
-                    :src="item.avatar"
-                    max-width="100px"
-                    class="mx-auto"
-                  ></v-img>
-                  <p
-                    style="font-size: 20px"
-                    class="my-10 white--text"
-                    v-html="item.content"
-                  ></p>
-                  <p class="white--text mb-0">
-                    <strong v-text="item.name"></strong><br />
-                    <span v-text="item.position"></span>
-                  </p>
-                </slide>
-              </carousel>
+                  <slide
+                    v-for="(item, index) in items"
+                    :key="index"
+                    :data-index="index"
+                    :data-name="index"
+                  >
+                    <v-img
+                      v-if="item.avatar"
+                      :src="item.avatar"
+                      max-width="100px"
+                      class="mx-auto"
+                    ></v-img>
+                    <p
+                      style="font-size: 20px"
+                      class="my-10 white--text"
+                      v-html="item.content"
+                    ></p>
+                    <p class="white--text mb-0">
+                      <strong v-text="item.name"></strong><br />
+                      <span v-text="item.position"></span>
+                    </p>
+                  </slide>
+                </carousel>
+              </client-only>
             </v-col>
           </v-row>
         </v-responsive>
@@ -51,12 +53,11 @@
 </template>
 
 <script>
-import { Carousel, Slide } from 'vue-carousel'
 export default {
   name: 'TestimonialsSection',
   components: {
-    Carousel,
-    Slide,
+    Carousel: () => import('vue-carousel/src/Carousel.vue'),
+    Slide: () => import('vue-carousel/src/Slide.vue'),
   },
   data: () => ({
     items: [
