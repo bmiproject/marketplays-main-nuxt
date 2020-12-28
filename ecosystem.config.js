@@ -41,7 +41,7 @@ module.exports = {
       path: '/home/marketplays/public_html/staging/main',
       'pre-deploy-local': '',
       'post-deploy':
-        'yarn install && yarn build && pm2 startOrRestart ecosystem.config.js --env staging',
+        'git pull origin staging && yarn install && yarn build && pm2 startOrRestart ecosystem.config.js --env staging',
       'pre-setup': '',
       env: {
         NODE_ENV: 'staging',
