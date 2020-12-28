@@ -14,36 +14,30 @@
               style="z-index: 1000"
             >
               <h3 class="my-10">What People Say</h3>
-              <client-only>
-                <carousel
-                  :per-page="1"
-                  :pagination-active-color="'#FFFFFF'"
-                  :pagination-color="'#DDDDDD'"
+              <VueSlickCarousel v-bind="slickOptions">
+                <div
+                  v-for="(item, index) in items"
+                  :key="index"
+                  :data-index="index"
+                  :data-name="index"
                 >
-                  <slide
-                    v-for="(item, index) in items"
-                    :key="index"
-                    :data-index="index"
-                    :data-name="index"
-                  >
-                    <v-img
-                      v-if="item.avatar"
-                      :src="item.avatar"
-                      max-width="100px"
-                      class="mx-auto"
-                    ></v-img>
-                    <p
-                      style="font-size: 20px"
-                      class="my-10 white--text"
-                      v-html="item.content"
-                    ></p>
-                    <p class="white--text mb-0">
-                      <strong v-text="item.name"></strong><br />
-                      <span v-text="item.position"></span>
-                    </p>
-                  </slide>
-                </carousel>
-              </client-only>
+                  <v-img
+                    v-if="item.avatar"
+                    :src="item.avatar"
+                    max-width="100px"
+                    class="mx-auto"
+                  ></v-img>
+                  <p
+                    style="font-size: 20px"
+                    class="my-10 white--text"
+                    v-html="item.content"
+                  ></p>
+                  <p class="white--text mb-0">
+                    <strong v-text="item.name"></strong><br />
+                    <span v-text="item.position"></span>
+                  </p>
+                </div>
+              </VueSlickCarousel>
             </v-col>
           </v-row>
         </v-responsive>
@@ -55,11 +49,18 @@
 <script>
 export default {
   name: 'TestimonialsSection',
-  components: {
-    Carousel: () => import('vue-carousel/src/Carousel.vue'),
-    Slide: () => import('vue-carousel/src/Slide.vue'),
-  },
   data: () => ({
+    slickOptions: {
+      dots: true,
+      dotsClass: 'slick-dots custom-dot-class',
+      edgeFriction: 0.35,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      autoplay: true,
+    },
     items: [
       {
         avatar: require('~/assets/images/ecommerce/avatar.png'),

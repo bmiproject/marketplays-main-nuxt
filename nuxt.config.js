@@ -12,7 +12,11 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ['~/assets/style.scss'],
+  css: [
+    'vue-slick-carousel/dist/vue-slick-carousel.css',
+    'vue-slick-carousel/dist/vue-slick-carousel-theme.css',
+    '~/assets/style.scss',
+  ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
@@ -20,6 +24,7 @@ export default {
     '~/plugins/GlobalMixins',
     '~/plugins/GraphqlMixins',
     { src: '~/plugins/VuexPersist', ssr: false },
+    { src: './plugins/VueSlickCarousel.js' },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -93,5 +98,4 @@ export default {
     color: '#BE1E2D',
     background: 'white',
   },
-
 }
