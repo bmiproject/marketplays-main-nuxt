@@ -8,7 +8,7 @@
     "start": "nuxt-ts start",
     "generate": "nuxt-ts generate",
     "test": "jest",
-    "deploy:staging": "pm2 deploy ecosystem.config.js staging --force"
+    "deploy:staging": "pm2 deploy ecosystem.config.js staging"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^2.0.0",
@@ -20,7 +20,6 @@
     "nuxt": "^2.14.6",
     "sweetalert": "^2.1.2",
     "vee-validate": "^3.4.5",
-    "vue-carousel": "^0.18.0",
     "vue-currency-filter": "^5.2.0",
     "vue-moment": "^4.1.0",
     "vue-slick-carousel": "^1.0.6",
