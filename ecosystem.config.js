@@ -2,11 +2,8 @@ module.exports = {
   apps: [
     {
       name: 'marketPlays',
-      exec_mode: 'cluster',
-      instances: 'max',
       script: './node_modules/nuxt/bin/nuxt.js',
       args: 'start',
-      watch: false,
       env_production: {
         NODE_ENV: 'production',
         BASE_URL: '',
@@ -33,7 +30,7 @@ module.exports = {
       path: 'DESTINATION_PATH',
       'pre-deploy-local': '',
       'post-deploy':
-        'yarn install && yarn build && pm2 reload ecosystem.config.js --env production',
+        'yarn install && yarn build && pm2 startOrRestart ecosystem.config.js --env production',
       'pre-setup': '',
     },
     staging: {
@@ -44,7 +41,7 @@ module.exports = {
       path: '/home/marketplays/public_html/staging/main',
       'pre-deploy-local': '',
       'post-deploy':
-        'yarn install && yarn build && pm2 reload ecosystem.config.js --env staging',
+        'yarn install && yarn build && pm2 startOrRestart ecosystem.config.js --env staging',
       'pre-setup': '',
       env: {
         NODE_ENV: 'staging',
