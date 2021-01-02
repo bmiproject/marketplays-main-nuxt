@@ -1,3 +1,8 @@
 export default {
-  apiUrl: 'graphql_URL_HERE',
+  production: {
+    API_BASE_URL: 'graphql_URL_HERE',
+  },
+  dev: {
+    API_BASE_URL: 'graphql_URL_HERE',
+  },
 }
