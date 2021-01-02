@@ -50,7 +50,7 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: process.env.API_BASE_URL || 'http://localhost/api',
+        httpEndpoint: process.env.API_BASE_URL || 'http://127.0.0.1:5001',
       },
     },
     defaultOptions: {
