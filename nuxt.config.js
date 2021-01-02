@@ -53,8 +53,8 @@ export default {
     clientConfigs: {
       default: {
         httpEndpoint: Config[process.env.NODE_ENV]
-          ? Config[process.env.NODE_ENV]
-          : Config.dev,
+          ? Config[process.env.NODE_ENV].API_BASE_URL
+          : Config.dev.API_BASE_URL,
       },
     },
     defaultOptions: {
@@ -103,6 +103,6 @@ export default {
     background: 'white',
   },
   env: {
-    baseUrl: Config[process.env.NODE_ENV],
+    baseUrl: Config[process.env.NODE_ENV].BASE_URL,
   },
 }
