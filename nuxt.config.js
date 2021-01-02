@@ -1,3 +1,5 @@
+import Config from './config'
+
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -50,7 +52,9 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: process.env.API_BASE_URL || 'http://127.0.0.1:5001',
+        httpEndpoint: Config[process.env.NODE_ENV]
+          ? Config[process.env.NODE_ENV]
+          : Config.dev,
       },
     },
     defaultOptions: {
@@ -97,5 +101,8 @@ export default {
     name: 'three-bounce',
     color: '#BE1E2D',
     background: 'white',
+  },
+  env: {
+    baseUrl: Config[process.env.NODE_ENV],
   },
 }
