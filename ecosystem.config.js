@@ -47,7 +47,7 @@ module.exports = {
         'git pull origin staging && yarn install && yarn build && pm2 startOrRestart ecosystem.config.js --env staging',
       'pre-setup': '',
       env: {
-        NODE_ENV: 'production',
+        NODE_ENV: 'staging',
       },
     },
   },
