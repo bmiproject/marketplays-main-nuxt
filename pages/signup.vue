@@ -17,15 +17,29 @@
                 <v-divider class="mb-5"></v-divider>
                 <ValidationProvider
                   v-slot="{ errors }"
-                  name="Name"
+                  name="First name"
                   :rules="'required'"
                 >
                   <v-text-field
-                    v-model="form.fullName"
+                    v-model="form.firstName"
                     :error-messages="errors"
                   >
                     <template slot="label">
-                      Name <span class="red--text">*</span>
+                      First name <span class="red--text">*</span>
+                    </template>
+                  </v-text-field>
+                </ValidationProvider>
+                <ValidationProvider
+                  v-slot="{ errors }"
+                  name="Last name"
+                  :rules="'required'"
+                >
+                  <v-text-field
+                    v-model="form.lastName"
+                    :error-messages="errors"
+                  >
+                    <template slot="label">
+                      Last name <span class="red--text">*</span>
                     </template>
                   </v-text-field>
                 </ValidationProvider>
@@ -40,6 +54,25 @@
                     </template>
                   </v-text-field>
                 </ValidationProvider>
+                <ValidationProvider
+                  v-slot="{ errors }"
+                  name="Phone"
+                  :rules="'required'"
+                >
+                  <v-text-field
+                    v-model="form.phoneNumber"
+                    :error-messages="errors"
+                  >
+                    <template slot="label">
+                      Phone <span class="red--text">*</span>
+                    </template>
+                  </v-text-field>
+                </ValidationProvider>
+                <v-text-field v-model="form.address">
+                  <template slot="label">
+                    Address <small>(optional)</small>
+                  </template>
+                </v-text-field>
               </v-col>
             </v-row>
 
@@ -62,30 +95,31 @@ export default {
     form: {},
   }),
   methods: {
-    async submit() {
-      const allowedItems = this.getAllowedItems(this.form, [
-        'fullName',
-        'email',
-        'password',
-      ])
-
-      let result = null
-      if (this.user) {
-        result = await this.updateMutation('User', allowedItems, this.user._id)
-      } else {
-        result = await this.createMutation('SignupUser', allowedItems, false)
-      }
-
-      if (result) {
-        this.back()
-        // eslint-disable-next-line no-undef
-        swal({
-          title: 'Success',
-          icon: 'success',
-          text: 'Admin User has been successfully saved',
-        })
-      }
+    back() {
+      this.$router.push('/store')
     },
-  }
+    async submit() {
+      // const allowedItems = this.getAllowedItems(this.form, [
+      //   'fullName',
+      //   'email',
+      //   'password',
+      // ])
+      // let result = null
+      // if (this.user) {
+      //   result = await this.updateMutation('User', allowedItems, this.user._id)
+      // } else {
+      //   result = await this.createMutation('SignupUser', allowedItems, false)
+      // }
+      // if (result) {
+      //   this.back()
+      //   // eslint-disable-next-line no-undef
+      //   swal({
+      //     title: 'Success',
+      //     icon: 'success',
+      //     text: 'Admin User has been successfully saved',
+      //   })
+      // }
+    },
+  },
 }
 </script>
