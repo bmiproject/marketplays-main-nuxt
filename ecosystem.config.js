@@ -41,7 +41,7 @@ module.exports = {
       host: 'staging.marketplays.app',
       ref: 'origin/staging',
       repo: 'https://github.com/bmiproject/marketplays-main-nuxt.git',
-      path: '/home/marketplays/public_html/staging/main',
+      path: '/home/marketplaysstage/public_html/staging/main',
       'pre-deploy-local': '',
       'post-deploy':
         'git pull origin staging && yarn install && yarn build && pm2 startOrRestart ecosystem.config.js --env staging',
