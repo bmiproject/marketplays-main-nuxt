@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { sumBy as _sumBy } from 'lodash'
+import { sumBy as _sumBy, forEach as _forEach } from 'lodash'
 
 Vue.mixin({
   data: () => ({
@@ -20,6 +20,16 @@ Vue.mixin({
       return (
         this.subTotal * (this.subscriptionTypeSelected.discountPercentage / 100)
       )
+    },
+    getAllowedItems(item, fields) {
+      const updatedItem = {}
+      _forEach(Object.keys(item), (key) => {
+        if (fields.includes(key)) {
+          updatedItem[key] = item[key]
+        }
+      })
+
+      return updatedItem
     },
   },
 })
