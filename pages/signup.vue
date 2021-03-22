@@ -2,8 +2,8 @@
   <section id="signup">
     <v-card
       elevation="2"
-      max-width="600px"
-      class="mx-auto mt-10"
+      max-width="500px"
+      class="mx-auto mt-15"
       style="margin-bottom: 200px"
     >
       <v-card-title>
