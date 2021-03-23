@@ -73,6 +73,16 @@
                     Address <small>(optional)</small>
                   </template>
                 </v-text-field>
+                <v-select
+                  v-model="form.access"
+                  :items="accessItems"
+                  attach
+                  chips
+                  label="Interested in:"
+                  multiple
+                  item-text="label"
+                  item-value="value"
+                ></v-select>
               </v-col>
             </v-row>
 
@@ -93,6 +103,16 @@ export default {
   name: 'Signup',
   data: () => ({
     form: {},
+    accessItems: [
+      {
+        label: 'Buying',
+        value: 'store',
+      },
+      {
+        label: 'Teaching or Working',
+        value: 'tfps',
+      },
+    ],
   }),
   methods: {
     back() {
