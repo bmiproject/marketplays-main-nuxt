@@ -39,7 +39,7 @@
               text
               v-text="item.label"
             ></v-btn>
-            <nuxt-link v-if="$route.path !== '/signup'" to="/signup">
+            <nuxt-link to="/signup">
               <v-btn class="ml-2" color="primary"> Sign Up </v-btn>
             </nuxt-link>
           </v-col>
