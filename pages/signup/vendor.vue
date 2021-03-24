@@ -2,12 +2,12 @@
   <section id="signup">
     <v-card
       elevation="2"
-      max-width="500px"
+      max-width="600px"
       class="mx-auto mt-15"
       style="margin-bottom: 200px"
     >
       <v-card-title>
-        <h3>Sign up</h3>
+        <h3 class="mt-2 flex-sm-grow-1">Sign up as a Vendor</h3>
       </v-card-title>
       <v-card-text>
         <ValidationObserver ref="observer" v-slot="{ handleSubmit }">
@@ -26,6 +26,20 @@
                   >
                     <template slot="label">
                       First name <span class="red--text">*</span>
+                    </template>
+                  </v-text-field>
+                </ValidationProvider>
+                <ValidationProvider
+                  v-slot="{ errors }"
+                  name="Middle name"
+                  :rules="'required'"
+                >
+                  <v-text-field
+                    v-model="form.middleName"
+                    :error-messages="errors"
+                  >
+                    <template slot="label">
+                      Middle name <span class="red--text">*</span>
                     </template>
                   </v-text-field>
                 </ValidationProvider>
@@ -56,7 +70,7 @@
                 </ValidationProvider>
                 <ValidationProvider
                   v-slot="{ errors }"
-                  name="Phone"
+                  name="Contact Number"
                   :rules="'required'"
                 >
                   <v-text-field
@@ -64,25 +78,38 @@
                     :error-messages="errors"
                   >
                     <template slot="label">
-                      Phone <span class="red--text">*</span>
+                      Phone Number <span class="red--text">*</span>
                     </template>
                   </v-text-field>
                 </ValidationProvider>
-                <v-text-field v-model="form.address">
-                  <template slot="label">
-                    Address <small>(optional)</small>
-                  </template>
-                </v-text-field>
-                <v-select
-                  v-model="form.access"
-                  :items="accessItems"
-                  attach
-                  chips
-                  label="Interested in:"
-                  multiple
-                  item-text="label"
-                  item-value="value"
-                ></v-select>
+                <ValidationProvider
+                  v-slot="{ errors }"
+                  name="Business Name"
+                  :rules="'required'"
+                >
+                  <v-text-field
+                    v-model="form.businessName"
+                    :error-messages="errors"
+                  >
+                    <template slot="label">
+                      Business Name <span class="red--text">*</span>
+                    </template>
+                  </v-text-field>
+                </ValidationProvider>
+                <ValidationProvider
+                  v-slot="{ errors }"
+                  name="Business Address"
+                  :rules="'required'"
+                >
+                  <v-text-field
+                    v-model="form.businessAddress"
+                    :error-messages="errors"
+                  >
+                    <template slot="label">
+                      Business Address <span class="red--text">*</span>
+                    </template>
+                  </v-text-field>
+                </ValidationProvider>
               </v-col>
             </v-row>
 
@@ -103,16 +130,6 @@ export default {
   name: 'Signup',
   data: () => ({
     form: {},
-    accessItems: [
-      {
-        label: 'Buying',
-        value: 'store',
-      },
-      {
-        label: 'Teaching or Working',
-        value: 'tfps',
-      },
-    ],
   }),
   methods: {
     back() {
