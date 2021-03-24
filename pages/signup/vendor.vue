@@ -1,11 +1,6 @@
 <template>
-  <section id="signup">
-    <v-card
-      elevation="2"
-      max-width="600px"
-      class="mx-auto mt-15"
-      style="margin-bottom: 200px"
-    >
+  <section id="signup" style="margin-bottom: 200px; z-index: 1000">
+    <v-card elevation="2" max-width="600px" class="mx-auto mt-15">
       <v-card-title>
         <h3 class="mt-2 flex-sm-grow-1">Sign up as a Vendor</h3>
       </v-card-title>
@@ -120,13 +115,15 @@
                 </ValidationProvider>
                 <ValidationProvider
                   v-slot="{ errors }"
-                  name="Business Address"
+                  name="Time Availability"
                   :rules="'required'"
                 >
+                  <p class="mt-10 mb-0">
+                    Please specify a suitable time for a call back
+                    <span class="red--text">*</span>
+                  </p>
                   <datepicker
                     v-model="form.timeAvailability"
-                    date-label="Please specify a suitable time for a call back <span class='red--text'>*</span>"
-                    :enable-timepicker="false"
                     :errors="errors"
                   />
                 </ValidationProvider>
@@ -147,7 +144,7 @@
 </template>
 <script>
 export default {
-  name: 'Signup',
+  name: 'VendorSignup',
   data: () => ({
     form: {},
   }),

@@ -11,7 +11,7 @@
       >
         <template v-slot:activator="{ on }">
           <v-text-field
-            append-icon="mdi-calendar"
+            prepend-icon="mdi-calendar"
             readonly
             :error-messages="errors"
             :value="computedDateFormattedMomentjs"
@@ -29,6 +29,7 @@
           :min="min"
           reactive
           no-title
+          :error-messages="errors"
           @input="
             datePickerMenu = false
             emitValues()
@@ -56,7 +57,8 @@
             :value="computedTimeMomentjs"
             hide-details
             v-on="on"
-          ></v-text-field>
+          >
+          </v-text-field>
         </template>
         <v-time-picker
           v-if="timepickerMenu"
