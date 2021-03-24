@@ -15,6 +15,14 @@
             <v-row>
               <v-col cols="12">
                 <v-divider class="mb-5"></v-divider>
+                <v-radio-group
+                  v-model="form.existingShop"
+                  mandatory
+                  label="Do you have an existing shop on this platform already?"
+                >
+                  <v-radio label="No" :value="false" class="mt-3"></v-radio>
+                  <v-radio label="Yes" :value="true"></v-radio>
+                </v-radio-group>
                 <ValidationProvider
                   v-slot="{ errors }"
                   name="First name"
