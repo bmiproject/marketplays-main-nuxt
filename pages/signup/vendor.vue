@@ -118,6 +118,18 @@
                     </template>
                   </v-text-field>
                 </ValidationProvider>
+                <ValidationProvider
+                  v-slot="{ errors }"
+                  name="Business Address"
+                  :rules="'required'"
+                >
+                  <datepicker
+                    v-model="form.timeAvailability"
+                    date-label="Please specify a suitable time for a call back <span class='red--text'>*</span>"
+                    :enable-timepicker="false"
+                    :errors="errors"
+                  />
+                </ValidationProvider>
               </v-col>
             </v-row>
 
