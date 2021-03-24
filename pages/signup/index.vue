@@ -9,7 +9,7 @@
       <v-card-title>
         <h3 class="mt-2 flex-sm-grow-1">Sign up</h3>
         <div>
-          <nuxt-link text to="/vendor-signup" type="primary" class="body-2">
+          <nuxt-link text to="/signup/vendor" type="primary" class="body-2">
             Become a vendor
           </nuxt-link>
         </div>
