@@ -50,6 +50,20 @@
                 </ValidationProvider>
                 <ValidationProvider
                   v-slot="{ errors }"
+                  name="Middle name"
+                  :rules="'required'"
+                >
+                  <v-text-field
+                    v-model="form.middleName"
+                    :error-messages="errors"
+                  >
+                    <template slot="label">
+                      Middle name <span class="red--text">*</span>
+                    </template>
+                  </v-text-field>
+                </ValidationProvider>
+                <ValidationProvider
+                  v-slot="{ errors }"
                   name="Email"
                   :rules="'required|email'"
                 >
@@ -61,15 +75,15 @@
                 </ValidationProvider>
                 <ValidationProvider
                   v-slot="{ errors }"
-                  name="Phone"
+                  name="Contact Number"
                   :rules="'required'"
                 >
                   <v-text-field
-                    v-model="form.phoneNumber"
+                    v-model="form.contactNumber"
                     :error-messages="errors"
                   >
                     <template slot="label">
-                      Phone <span class="red--text">*</span>
+                      Contact Number <span class="red--text">*</span>
                     </template>
                   </v-text-field>
                 </ValidationProvider>
@@ -94,6 +108,7 @@
             <div class="mt-2">
               <v-btn @click.prevent="back">cancel</v-btn>
               <v-btn color="primary" type="submit" class="float-right"
+              :disabled="isLoading"
                 >Submit</v-btn
               >
             </div>
@@ -104,6 +119,7 @@
   </section>
 </template>
 <script>
+import { forEach as _forEach } from 'lodash'
 export default {
   name: 'Signup',
   data: () => ({
@@ -123,27 +139,37 @@ export default {
     back() {
       this.$router.push('/store')
     },
+    allowedItems(item, field) {
+      const updatedItem = {}
+      _forEach(Object.keys(item), (key) => {
+        if (field.includes(key)) {
+          updatedItem[key] = item[key]
+        }
+      })
+
+      return updatedItem
+    },
     async submit() {
-      // const allowedItems = this.getAllowedItems(this.form, [
-      //   'fullName',
-      //   'email',
-      //   'password',
-      // ])
-      // let result = null
-      // if (this.user) {
-      //   result = await this.updateMutation('User', allowedItems, this.user._id)
-      // } else {
-      //   result = await this.createMutation('SignupUser', allowedItems, false)
-      // }
-      // if (result) {
-      //   this.back()
-      //   // eslint-disable-next-line no-undef
-      //   swal({
-      //     title: 'Success',
-      //     icon: 'success',
-      //     text: 'Admin User has been successfully saved',
-      //   })
-      // }
+      const allowedItems = this.allowedItems(this.form, [
+        'firstName',
+        'lastName',
+        'middleName',
+        'email',
+        'contactNumber',
+        // 'address',
+      ])
+
+      const result = await this.createMutation('Customer', allowedItems)
+
+      if (result) {
+        this.form = {}
+        // eslint-disable-next-line no-undef
+        swal({
+          title: 'Success',
+          icon: 'success',
+          text: 'You have registered in marketPlays.. Please check your email.',
+        })
+      }
     },
   },
 }

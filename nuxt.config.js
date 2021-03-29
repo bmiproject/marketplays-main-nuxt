@@ -25,6 +25,7 @@ export default {
     '~/plugins/Init',
     '~/plugins/GlobalMixins',
     '~/plugins/GraphqlMixins',
+    '~/plugins/graphql',
     { src: '~/plugins/VuexPersist', ssr: false },
     { src: './plugins/VueSlickCarousel.js' },
   ],
