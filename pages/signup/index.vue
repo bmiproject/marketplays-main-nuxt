@@ -93,7 +93,7 @@
                   </template>
                 </v-text-field>
                 <v-select
-                  v-model="form.access"
+                  v-model="form.interestedIn"
                   :items="accessItems"
                   attach
                   chips
@@ -156,7 +156,8 @@ export default {
         'middleName',
         'email',
         'contactNumber',
-        // 'address',
+        'address',
+        'interestedIn'
       ])
 
       const result = await this.createMutation('Customer', allowedItems)
@@ -169,6 +170,7 @@ export default {
           icon: 'success',
           text: 'You have registered in marketPlays.. Please check your email.',
         })
+        this.$refs.observer.reset()
       }
     },
   },
