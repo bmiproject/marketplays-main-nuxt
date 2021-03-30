@@ -11,7 +11,7 @@
               <v-col cols="12">
                 <v-divider class="mb-5"></v-divider>
                 <v-radio-group
-                  v-model="form.existingShop"
+                  v-model="form.hasExistingMarketplaysPlatform"
                   mandatory
                   label="Do you have an existing shop on this platform already?"
                 >
@@ -77,11 +77,11 @@
                   :rules="'required'"
                 >
                   <v-text-field
-                    v-model="form.phoneNumber"
+                    v-model="form.contactNumber"
                     :error-messages="errors"
                   >
                     <template slot="label">
-                      Phone Number <span class="red--text">*</span>
+                      Contact Number <span class="red--text">*</span>
                     </template>
                   </v-text-field>
                 </ValidationProvider>
@@ -123,7 +123,7 @@
                     <span class="red--text">*</span>
                   </p>
                   <datepicker
-                    v-model="form.timeAvailability"
+                    v-model="form.dateTimeForVerification"
                     :errors="errors"
                   />
                 </ValidationProvider>
@@ -143,6 +143,7 @@
   </section>
 </template>
 <script>
+import { forEach as _forEach } from 'lodash'
 export default {
   name: 'VendorSignup',
   data: () => ({
@@ -152,27 +153,41 @@ export default {
     back() {
       this.$router.push('/store')
     },
+    allowedItems(item, field) {
+      const updatedItem = {}
+      _forEach(Object.keys(item), (key) => {
+        if (field.includes(key)) {
+          updatedItem[key] = item[key]
+        }
+      })
+
+      return updatedItem
+    },
     async submit() {
-      // const allowedItems = this.getAllowedItems(this.form, [
-      //   'fullName',
-      //   'email',
-      //   'password',
-      // ])
-      // let result = null
-      // if (this.user) {
-      //   result = await this.updateMutation('User', allowedItems, this.user._id)
-      // } else {
-      //   result = await this.createMutation('SignupUser', allowedItems, false)
-      // }
-      // if (result) {
-      //   this.back()
-      //   // eslint-disable-next-line no-undef
-      //   swal({
-      //     title: 'Success',
-      //     icon: 'success',
-      //     text: 'Admin User has been successfully saved',
-      //   })
-      // }
+      const allowedItems = this.allowedItems(this.form, [
+        // 'hasExistingMarketplaysPlatform',
+        'firstName',
+        'middleName',
+        'lastName',
+        'email',
+        'contactNumber',
+        // 'businessName',
+        // 'businessAddress',
+        'dateTimeForVerification',
+        // 'selfiePic',
+      ])
+      const result = await this.createMutation('Vendor', allowedItems)
+
+      if (result) {
+        this.form = {}
+        // eslint-disable-next-line no-undef
+        swal({
+          title: 'You have registered in marketPlays as Vendor',
+          icon: 'success',
+          text: 'Please wait within 24 hours, marketPlays admin will contact you via email.',
+        })
+        this.$refs.observer.reset()
+      }
     },
   },
 }
