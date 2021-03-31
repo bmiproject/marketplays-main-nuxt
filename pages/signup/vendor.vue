@@ -101,6 +101,20 @@
                 </ValidationProvider>
                 <ValidationProvider
                   v-slot="{ errors }"
+                  name="Phone Number"
+                  :rules="'required'"
+                >
+                  <v-text-field
+                    v-model="form.phoneNumber"
+                    :error-messages="errors"
+                  >
+                    <template slot="label">
+                      Phone Number <span class="red--text">*</span>
+                    </template>
+                  </v-text-field>
+                </ValidationProvider>
+                <ValidationProvider
+                  v-slot="{ errors }"
                   name="Business Address"
                   :rules="'required'"
                 >
@@ -171,8 +185,9 @@ export default {
         'lastName',
         'email',
         'contactNumber',
-        // 'businessName',
-        // 'businessAddress',
+        'phoneNumber',
+        'businessName',
+        'businessAddress',
         'dateTimeForVerification',
         // 'selfiePic',
       ])
