@@ -10,6 +10,17 @@
             <v-row>
               <v-col cols="12">
                 <v-divider class="mb-5"></v-divider>
+                <v-alert
+                  v-show="showFeedback"
+                  dismissible
+                  :color="feedback.color"
+                  border="left"
+                  elevation="2"
+                  colored-border
+                  :icon="`mdi-${feedback.icon}`"
+                >
+                  <span v-html="feedback.message"></span>
+                </v-alert>
                 <v-radio-group
                   v-model="form.hasExistingMarketplaysPlatform"
                   mandatory
@@ -162,6 +173,12 @@ export default {
   name: 'VendorSignup',
   data: () => ({
     form: {},
+    showFeedback: false,
+    feedback: {
+      color: 'success',
+      icon: 'check',
+      message: `You have registered as a Vendor. Please wait within 24 hours. <br />marketPlays admin will contact you via email.`,
+    },
   }),
   methods: {
     back() {
@@ -191,18 +208,19 @@ export default {
         'dateTimeForVerification',
         // 'selfiePic',
       ])
-      const result = await this.createMutation('Vendor', allowedItems)
+      const result = await this.createMutation('Vendor', allowedItems, {
+        customErrorMessage:
+          'There was an error while registering your account.',
+      })
 
       if (result) {
         this.form = {}
         // eslint-disable-next-line no-undef
-        swal({
-          title: 'You have registered in marketPlays as Vendor',
-          icon: 'success',
-          text: 'Please wait within 24 hours, marketPlays admin will contact you via email.',
-        })
+        this.showFeedback = true
         this.$refs.observer.reset()
       }
+
+      this.$vuetify.goTo('#signup')
     },
   },
 }

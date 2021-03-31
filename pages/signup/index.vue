@@ -14,12 +14,23 @@
           </nuxt-link>
         </div>
       </v-card-title>
-      <v-card-text>
+      <v-card-text class="mt-3">
         <ValidationObserver ref="observer" v-slot="{ handleSubmit }">
           <form @submit.prevent="handleSubmit(submit)">
             <v-row>
               <v-col cols="12">
                 <v-divider class="mb-5"></v-divider>
+                <v-alert
+                  v-show="showFeedback"
+                  dismissible
+                  :color="feedback.color"
+                  border="left"
+                  elevation="2"
+                  colored-border
+                  :icon="`mdi-${feedback.icon}`"
+                >
+                  <span v-html="feedback.message"></span>
+                </v-alert>
                 <ValidationProvider
                   v-slot="{ errors }"
                   name="First name"
@@ -107,8 +118,11 @@
 
             <div class="mt-2">
               <v-btn @click.prevent="back">cancel</v-btn>
-              <v-btn color="primary" type="submit" class="float-right"
-              :disabled="isLoading"
+              <v-btn
+                color="primary"
+                type="submit"
+                class="float-right"
+                :disabled="isLoading"
                 >Submit</v-btn
               >
             </div>
@@ -134,6 +148,13 @@ export default {
         value: 'tfps',
       },
     ],
+    showFeedback: false,
+    feedback: {
+      color: 'success',
+      icon: 'check',
+      message: `You have registered in marketPlays. <br />Please check your email for
+          confirmation.`,
+    },
   }),
   methods: {
     back() {
@@ -157,21 +178,21 @@ export default {
         'email',
         'contactNumber',
         'address',
-        'interestedIn'
+        'interestedIn',
       ])
 
-      const result = await this.createMutation('Customer', allowedItems)
+      const result = await this.createMutation('Customer', allowedItems, {
+        customErrorMessage:
+          'There was an error while registering your account.',
+      })
 
       if (result) {
         this.form = {}
         // eslint-disable-next-line no-undef
-        swal({
-          title: 'Success',
-          icon: 'success',
-          text: 'You have registered in marketPlays.. Please check your email.',
-        })
+        this.showFeedback = true
         this.$refs.observer.reset()
       }
+      this.$vuetify.goTo('#signup')
     },
   },
 }

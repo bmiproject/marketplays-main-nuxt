@@ -12,7 +12,8 @@ Vue.mixin({
         return this.createMutation(model, record)
       }
     },
-    async createMutation(model, record, addPrefix = true) {
+    async createMutation(model, record, args) {
+      const { addPrefix = true, silent = false, customErrorMessage } = args
       const mutationModel = addPrefix ? `createOne${model}` : model
       const mutationModelInput = addPrefix ? `CreateOne${model}` : model
 
@@ -37,11 +38,14 @@ Vue.mixin({
           return response.data[mutationModel].record
         })
         .catch(() => {
-          swal({
-            title: 'Error',
-            icon: 'error',
-            text: `Something went wrong while adding ${model.toLowerCase()}`,
-          })
+          if (!silent)
+            swal({
+              title: 'Error',
+              icon: 'error',
+              text: customErrorMessage
+                ? customErrorMessage
+                : `Something went wrong while adding ${model.toLowerCase()}`,
+            })
           return false
         })
     },
