@@ -126,6 +126,12 @@
                 >Submit</v-btn
               >
             </div>
+            <button
+              v-google-signin-button="clientId"
+              class="google-signin-button"
+            >
+              Login with Google
+            </button>
           </form>
         </ValidationObserver>
       </v-card-text>
@@ -134,9 +140,18 @@
 </template>
 <script>
 import { forEach as _forEach } from 'lodash'
+
+import GoogleSignInButton from 'vue-google-signin-button-directive'
+
 export default {
   name: 'Signup',
+  directives: {
+    GoogleSignInButton,
+  },
+
   data: () => ({
+    clientId:
+      '909448613494-5r28g6pdcuk1cbbghhs7f7vsh63v4ikf.apps.googleusercontent.com',
     form: {},
     accessItems: [
       {
@@ -194,6 +209,24 @@ export default {
       }
       this.$vuetify.goTo('#signup')
     },
+    OnGoogleAuthSuccess(idToken) {
+      // Receive the idToken and make your magic with the backend
+      console.log(idToken)
+    },
+    OnGoogleAuthFail(error) {
+      console.log(error)
+    },
   },
 }
 </script>
+<style>
+.google-signin-button {
+  color: white;
+  background-color: red;
+  height: 50px;
+  font-size: 16px;
+  border-radius: 10px;
+  padding: 10px 20px 25px 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+</style>
