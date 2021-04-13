@@ -168,9 +168,8 @@ export default {
     },
     OnGoogleAuthSuccess(idToken) {
       // Receive the idToken and make your magic with the backend
+      // register user to do
 
-      // register user
-      // todo
       console.log(idToken)
     },
     OnGoogleAuthFail() {},
