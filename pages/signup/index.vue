@@ -125,13 +125,11 @@
                 :disabled="isLoading"
                 >Submit</v-btn
               >
+              <div
+                id="google-signin-button"
+                style="float: right; padding-right: 14px"
+              ></div>
             </div>
-            <button
-              v-google-signin-button="clientId"
-              class="google-signin-button"
-            >
-              Login with Google
-            </button>
           </form>
         </ValidationObserver>
       </v-card-text>
@@ -139,19 +137,14 @@
   </section>
 </template>
 <script>
+import gql from 'graphql-tag'
+import swal from 'sweetalert'
 import { forEach as _forEach } from 'lodash'
-
-import GoogleSignInButton from 'vue-google-signin-button-directive'
 
 export default {
   name: 'Signup',
-  directives: {
-    GoogleSignInButton,
-  },
 
   data: () => ({
-    clientId:
-      '909448613494-5r28g6pdcuk1cbbghhs7f7vsh63v4ikf.apps.googleusercontent.com',
     form: {},
     accessItems: [
       {
@@ -171,6 +164,16 @@ export default {
           confirmation.`,
     },
   }),
+
+  mounted() {
+    this.gapi = window.gapi
+
+    if (this.gapi) {
+      this.gapi.signin2.render('google-signin-button', {
+        onsuccess: this.onSignIn,
+      })
+    }
+  },
   methods: {
     back() {
       this.$router.push('/store')
@@ -209,24 +212,88 @@ export default {
       }
       this.$vuetify.goTo('#signup')
     },
-    OnGoogleAuthSuccess(idToken) {
-      // Receive the idToken and make your magic with the backend
-      console.log(idToken)
+
+    onSignIn(googleUser) {
+      // Useful data for your client-side scripts:
+      const profile = googleUser.getBasicProfile()
+
+      // console.log('ID: ' + profile.getId()) // Don't send this directly to your server!
+      const fullName = profile.getName()
+      const givenName = profile.getGivenName()
+      const familyName = profile.getFamilyName()
+      const imageURL = profile.getImageUrl()
+      const email = profile.getEmail()
+      // The ID token you need to pass to your backend:
+      const idToken = googleUser.getAuthResponse().id_token
+      const allowedItems = {
+        fullName,
+        givenName,
+        familyName,
+        imageURL,
+        email,
+        idToken,
+      }
+
+      const result = this.$apollo
+        .mutate({
+          mutation: gql`
+        mutation {
+          LoginViaGmail(record: {
+            fullName:"${fullName}" ,
+            givenName: "${givenName}" ,
+            familyName:"${familyName}" ,
+            imageURL: "${imageURL}" ,
+            email: "${email}" ,
+            idToken: "${idToken}" 
+            }) {
+            record {
+              _id,
+              email
+            }
+          }
+        }
+      `,
+          variables: {
+            record: allowedItems,
+          },
+        })
+        .then((response) => {
+          return response.data.LoginViaGmail.record
+        })
+        .catch(() => {
+          swal({
+            title: 'Error',
+            icon: 'error',
+            text: `Something went wrong while Login User`,
+          })
+          return false
+        })
+      return result
     },
-    OnGoogleAuthFail(error) {
-      console.log(error)
-    },
+    OnGoogleAuthFail() {},
+  },
+
+  head() {
+    return {
+      meta: [
+        {
+          name: 'google-signin-scope',
+          content: 'profile email',
+        },
+        {
+          name: 'google-signin-client_id',
+          content:
+            '909448613494-5r28g6pdcuk1cbbghhs7f7vsh63v4ikf.apps.googleusercontent.com',
+        },
+      ],
+      script: [
+        {
+          src: 'https://apis.google.com/js/platform.js',
+          defer: true,
+          async: true,
+        },
+      ],
+    }
   },
 }
 </script>
-<style>
-.google-signin-button {
-  color: white;
-  background-color: red;
-  height: 50px;
-  font-size: 16px;
-  border-radius: 10px;
-  padding: 10px 20px 25px 20px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-</style>
