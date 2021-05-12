@@ -14,14 +14,20 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ['~/assets/style.scss'],
+  css: [
+    'vue-slick-carousel/dist/vue-slick-carousel.css',
+    'vue-slick-carousel/dist/vue-slick-carousel-theme.css',
+    '~/assets/style.scss',
+  ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     '~/plugins/Init',
     '~/plugins/GlobalMixins',
     '~/plugins/GraphqlMixins',
+    '~/plugins/graphql',
     { src: '~/plugins/VuexPersist', ssr: false },
+    { src: './plugins/VueSlickCarousel.js' },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -47,7 +53,9 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: Config.apiUrl,
+        httpEndpoint: Config[process.env.NODE_ENV]
+          ? Config[process.env.NODE_ENV].API_BASE_URL
+          : Config.dev.API_BASE_URL,
       },
     },
     defaultOptions: {
@@ -87,10 +95,17 @@ export default {
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {},
+  build: {
+    transpile: ['vee-validate/dist/rules'],
+  },
   loadingIndicator: {
     name: 'three-bounce',
     color: '#BE1E2D',
     background: 'white',
+  },
+  env: {
+    baseUrl: Config[process.env.NODE_ENV]
+      ? Config[process.env.NODE_ENV].API_BASE_URL
+      : Config.dev.API_BASE_URL,
   },
 }

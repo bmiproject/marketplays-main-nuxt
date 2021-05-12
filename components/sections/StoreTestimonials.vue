@@ -14,12 +14,8 @@
               style="z-index: 1000"
             >
               <h3 class="my-10">What People Say</h3>
-              <carousel
-                :per-page="1"
-                :pagination-active-color="'#FFFFFF'"
-                :pagination-color="'#DDDDDD'"
-              >
-                <slide
+              <VueSlickCarousel v-bind="slickOptions">
+                <div
                   v-for="(item, index) in items"
                   :key="index"
                   :data-index="index"
@@ -40,8 +36,8 @@
                     <strong v-text="item.name"></strong><br />
                     <span v-text="item.position"></span>
                   </p>
-                </slide>
-              </carousel>
+                </div>
+              </VueSlickCarousel>
             </v-col>
           </v-row>
         </v-responsive>
@@ -51,14 +47,20 @@
 </template>
 
 <script>
-import { Carousel, Slide } from 'vue-carousel'
 export default {
   name: 'TestimonialsSection',
-  components: {
-    Carousel,
-    Slide,
-  },
   data: () => ({
+    slickOptions: {
+      dots: true,
+      dotsClass: 'slick-dots custom-dot-class',
+      edgeFriction: 0.35,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      autoplay: true,
+    },
     items: [
       {
         avatar: require('~/assets/images/ecommerce/avatar.png'),

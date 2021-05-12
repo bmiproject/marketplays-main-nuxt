@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'Home',
+  name: 'StoreHomePage',
   head: {
     title: 'Store',
   },

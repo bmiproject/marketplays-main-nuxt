@@ -17,11 +17,18 @@
               dense
               outlined
               placeholder="Search"
+              hide-details
             >
               <template slot="append">
                 <v-icon color="#BE1E2D">mdi-magnify</v-icon>
               </template>
             </v-text-field>
+            <NuxtLink
+              :to="`${storeUrl}/advanced_search`"
+              class="float-right text-uppercase font-weight-bold mr-4 advanced-search-link mt-1"
+            >
+              Advanced Search
+            </NuxtLink>
           </v-col>
           <v-col class="text-right" lg="7">
             <v-btn
@@ -32,7 +39,9 @@
               text
               v-text="item.label"
             ></v-btn>
-            <v-btn class="ml-2" color="primary"> Sign Up </v-btn>
+            <nuxt-link to="/signup">
+              <v-btn class="ml-2" color="primary"> Sign Up </v-btn>
+            </nuxt-link>
           </v-col>
         </v-row>
       </v-toolbar>

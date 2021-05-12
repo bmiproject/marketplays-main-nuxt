@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import { sumBy as _sumBy } from 'lodash'
+import { sumBy as _sumBy, forEach as _forEach } from 'lodash'
 
-Vue.mixin({
+const GlobalMixin = {
   data: () => ({
     containerSize: '1280px',
     storeUrl: '/store',
@@ -22,4 +22,5 @@ Vue.mixin({
       )
     },
   },
-})
+}
+Vue.mixin(GlobalMixin)

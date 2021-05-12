@@ -41,3 +41,14 @@ Vue.use(VueCurrencyFilter, {
   symbolSpacing: false,
   avoidEmptyDecimals: undefined,
 })
+
+if (!Vue.moment) {
+  Vue.use(require('vue-moment'))
+}
+
+Vue.filter('truncate', function (value, maxLength) {
+  if (!value || value.length <= maxLength) {
+    return value
+  }
+  return value.slice(0, maxLength) + '...'
+})

@@ -22,6 +22,9 @@ body {
   h6 { font-size: 18px; line-height: 21px; }
   header {
     border: 1px solid #e1e1e1;
+    .advanced-search-link {
+      font-size: 11px;
+    }
     &.checkout-process-header {
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
       z-index: 1000;
@@ -72,6 +75,28 @@ body {
 
     .subscription-type-selected {
       .service-item { font-size: $smaller-font; color: #999999; }
+    }
+  }
+
+  .store-checkout {
+    .order-summary {
+      .item-image { border-radius: 5px; vertical-align: middle; }
+      .item-name {
+        a { color: #555555; }
+      }
+      .mini-cart-footer { background-color: #f4f4f4; }
+    }
+    .payment-methods {
+      .payment-item {
+        background-color: #f4f4f4;
+        border-radius: 4px;
+        border: 1px solid #E1E1E1;
+
+        &.selected {
+          background-color: #ffffff;
+          border-color: #1358B5;
+        }
+      }
     }
   }
 
