@@ -124,18 +124,18 @@ export default {
       const result = await this.$apollo
         .mutate({
           mutation: gql`
-      mutation {
-        LoginUser(record: {
-            email: "${allowedItems.email}",
-            password: "${allowedItems.password}",
-          }) {
-          record {
-            _id,
-            email
-          }
-        }
-      }
-    `,
+            mutation {
+              LoginUser(record: {
+                  email: "${allowedItems.email}",
+                  password: "${allowedItems.password}",
+                }) {
+                record {
+                  _id,
+                  email
+                }
+              }
+            }
+          `,
           variables: {
             record: {
               allowedItems,
@@ -161,6 +161,7 @@ export default {
 
     async submit() {
       await this.loginUser()
+      this.$router.push(this.storeUrl)
     },
     onSignIn(googleUser) {
       // Useful data for your client-side scripts:
@@ -217,6 +218,7 @@ export default {
           })
           return false
         })
+      this.$router.push(this.storeUrl)
       return result
 
       // todo redirect
