@@ -66,8 +66,12 @@
                 :disabled="isLoading"
                 >Submit</v-btn
               >
+
               <div
                 id="google-signin-button"
+                class="g-signin2"
+                :data-onsuccess="onSignIn"
+                data-theme="dark"
                 style="float: right; padding-right: 14px"
               ></div>
             </div>
