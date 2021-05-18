@@ -128,6 +128,7 @@
               <div
                 id="google-signin-button"
                 style="float: right; padding-right: 14px"
+                v-if="!hidden"
               ></div>
             </div>
           </form>
@@ -163,6 +164,7 @@ export default {
       message: `You have registered in marketPlays. <br />Please check your email for
           confirmation.`,
     },
+    hidden: true,
   }),
 
   mounted() {
