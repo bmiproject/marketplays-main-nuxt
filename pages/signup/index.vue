@@ -125,10 +125,6 @@
                 :disabled="isLoading"
                 >Submit</v-btn
               >
-              <div
-                id="google-signin-button"
-                style="float: right; padding-right: 14px"
-              ></div>
             </div>
           </form>
         </ValidationObserver>
