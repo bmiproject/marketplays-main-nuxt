@@ -212,6 +212,8 @@ export default {
           },
         })
         .then((response) => {
+          this.$store.commit('updateUserLoggedIn', true)
+          this.$router.push(this.storeUrl)
           return response.data.LoginViaGmail.record
         })
         .catch(() => {
@@ -222,7 +224,7 @@ export default {
           })
           return false
         })
-      this.$router.push(this.storeUrl)
+
       return result
 
       // todo redirect

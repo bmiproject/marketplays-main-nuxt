@@ -21,6 +21,9 @@ const GlobalMixin = {
         this.subTotal * (this.subscriptionTypeSelected.discountPercentage / 100)
       )
     },
+    userLoggedIn() {
+      return this.$store.state.userLoggedIn
+    },
   },
 }
 Vue.mixin(GlobalMixin)
