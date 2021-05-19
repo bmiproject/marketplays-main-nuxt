@@ -36,11 +36,18 @@
               :key="item.name"
               :to="item.link"
               class="topmenu-link text-capitalize"
+              :class="hideElement(item.name)"
               text
               v-text="item.label"
             ></v-btn>
             <nuxt-link to="/signup">
-              <v-btn class="ml-2" color="primary"> Sign Up </v-btn>
+              <v-btn
+                class="ml-2"
+                color="primary"
+                :class="hideElement('signup')"
+              >
+                Sign Up
+              </v-btn>
             </nuxt-link>
           </v-col>
         </v-row>
@@ -48,6 +55,12 @@
     </v-responsive>
   </header>
 </template>
+<style>
+.topmenu-link.hide,
+button.hide {
+  display: none;
+}
+</style>
 <script>
 export default {
   name: 'HeaderLayout',
@@ -58,5 +71,12 @@ export default {
       { name: 'login', label: 'Login', link: 'login' },
     ],
   }),
+  methods: {
+    hideElement(n) {
+      return (n === 'login' || n === 'signup') && this.userLoggedIn
+        ? 'hide'
+        : 'show'
+    },
+  },
 }
 </script>

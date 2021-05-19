@@ -66,8 +66,12 @@
                 :disabled="isLoading"
                 >Submit</v-btn
               >
+
               <div
                 id="google-signin-button"
+                class="g-signin2"
+                :data-onsuccess="onSignIn"
+                data-theme="dark"
                 style="float: right; padding-right: 14px"
               ></div>
             </div>
@@ -208,6 +212,8 @@ export default {
           },
         })
         .then((response) => {
+          this.$store.commit('updateUserLoggedIn', true)
+          this.$router.push(this.storeUrl)
           return response.data.LoginViaGmail.record
         })
         .catch(() => {
@@ -218,7 +224,7 @@ export default {
           })
           return false
         })
-      this.$router.push(this.storeUrl)
+
       return result
 
       // todo redirect

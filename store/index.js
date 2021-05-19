@@ -17,6 +17,7 @@ export const state = () => ({
     ],
   },
   checkoutProcessPageNumber: 1,
+  userLoggedIn: false
 })
 
 export const mutations = {
@@ -35,4 +36,7 @@ export const mutations = {
   setCheckProcessPage(state, currentPageNumber) {
     state.checkoutProcessPageNumber = currentPageNumber
   },
+  updateUserLoggedIn(state, value) {
+    state.userLoggedIn = value
+  }
 }
