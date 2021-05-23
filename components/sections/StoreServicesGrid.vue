@@ -8,9 +8,9 @@
           cols="4"
           class="service-item"
         >
-          <NuxtLink :to="item.slug || ``">
+          <NuxtLink :to="item.slug ? $nuxt.$route.path + '/' + item.slug : ''">
             <v-img
-              :src="item.image || `/image-placeholder.jpg`"
+              :src="getServiceImage(item.files)"
               max-height="355px"
               class="mx-auto"
             >
@@ -41,6 +41,23 @@ export default {
     items: {
       type: Array,
       required: true,
+    },
+  },
+  methods: {
+    getServiceImage(files) {
+      let images = []
+      if (files && files.length > 0) {
+        images = files.map((x) => {
+          if (x && x.urlResized) {
+            return x.urlResized
+          }
+          if (x.url) {
+            return x.url
+          }
+        })
+      }
+
+      return images && images.length > 0 ? images[0] : '/image-placeholder.jpg'
     },
   },
 }
