@@ -52,7 +52,6 @@ export default {
     categories: [],
   }),
   mounted() {
-    debugger
     this.getList('categories', [
       '_id',
       'name',
