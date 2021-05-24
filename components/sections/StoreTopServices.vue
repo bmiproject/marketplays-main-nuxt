@@ -11,7 +11,7 @@
           class="py-2"
           md="3"
         >
-          <NuxtLink :to="item.slug || ``">
+          <NuxtLink :to="getlink(item.slug)">
             <v-btn
               text
               class="text-capitalize"
@@ -35,6 +35,11 @@ export default {
   }),
   mounted() {
     this.getList('services', ['_id', 'name', 'slug'], { limit: 47 })
+  },
+  methods: {
+    getlink(slug) {
+      return '/store/services/' + slug
+    },
   },
 }
 </script>
