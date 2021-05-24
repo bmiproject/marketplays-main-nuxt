@@ -26,10 +26,10 @@ import { find as _find } from 'lodash'
 export default {
   name: 'HeaderNavEcommerce',
   apollo: {
-    departments: {
+    categories: {
       query: gql`
         query {
-          departments(limit: 8) {
+          categories(limit: 8) {
             _id
             name
             slug
@@ -37,22 +37,22 @@ export default {
         }
       `,
       update(data) {
-        return data.departments
+        return data.categories
       },
     },
   },
   data: () => ({
-    departments: [],
+    categories: [],
   }),
   computed: {
     navs() {
       const seeMore = {
         name: 'See All Categories',
-        slug: '/store/departments',
+        slug: '/store/categories',
         icon: 'mdi-chevron-down',
         iconPosition: 'right',
       }
-      const navs = this.departments
+      const navs = this.categories
 
       if (!_find(navs, (o) => o.name === seeMore.name)) navs.push(seeMore)
 
